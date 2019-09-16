@@ -1,0 +1,22 @@
+{
+  "name": "ArcFindGame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "parcel -p 8000 watch src/index.html",
+    "build": "parcel build src/index.html --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arctouch-mateuspaulino/ArcFindGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/arctouch-mateuspaulino/ArcFindGame/blob/master/README.md",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.22.12"
+  },
+  "dependencies": {}
+}
