@@ -9,15 +9,142 @@ $red-dark: #AB192D;
 $desktop-size: 1280px;
 $mobile-size: 414px;
 $desktop-breakpoint: 768px;
-
-.header {
+*{
     box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(#ff9b31, #ff8402 );
+}
+
+.container{
+    max-width: 1280px;
+    // height: 100%;
+    padding-top: 20px;
+}
+
+.header{
     width: 100%;
-    height: 98px;
+    height: auto;
+    text-align: center;
+    padding-top: 10px ;
 
-    background: $red;
-
-    @media screen and (min-width: $desktop-breakpoint) {
-        height: 79px;
+    &__logo{
+        width: 100%;
+        height: auto;
+        img {
+            width: 140px;
+        }
     }
+    .header__subtitle {
+        font-family: 'Open Sans', sans-serif;
+        color: #54555a;
+    }
+}
+
+.form__container{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 15px;
+
+        &__description, p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 1000;
+            color: white; 
+        }
+        .form__input{
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+
+            .input__text{
+                width: 60%;
+                height: 35px;
+                font-size: 12px;
+                background: #64656b;
+                border: none;
+                color: #cbcaca;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-left: 15px;
+            }
+            ::placeholder{
+                color: #cbcaca;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        }
+        .input__submit{
+            border:none;
+            width: 20%;
+            height: 35px;
+            background: #64656b;
+            color: white;
+            border-left: 1px solid white;
+        }
+         
+}
+
+.input__submit:hover{
+    background: #4f5055;
+}
+
+.section__game{
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+
+        .section__text--tip{
+            text-align: center;
+            font-family: Arial, Helvetica;
+            color:#54555a;
+        }
+        .list__column{
+            width: 100%;
+            height: auto;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 0px 10px;
+
+            .item__answer{
+                height: 35px;
+                background: #f9b369;
+                margin-top: 7px;
+                position:relative;
+                .p__text{
+                    text-align: center;
+                    padding-top: 5px;
+                    color: white;
+                }
+            }
+            .item__answer  .p__text{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color:white;
+                visibility:hidden;
+                position: absolute;
+                background:#c4721b;
+            }
+        }
+}
+
+.footer{
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+        &__score-game, &__timer{
+            display: flex;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-weight: 1000;
+        }
 }

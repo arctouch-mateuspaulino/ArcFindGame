@@ -11,11 +11,55 @@
 </head>
 
 <body>
-    <header class="header">
-        <h1>Olá mundo</h1>
-    </header>
-    <main class="main">    
-    </main>
+    <div class="container">
+        <header class="header">
+            <div class="header__logo">
+                <img src="img/Logo.png" alt="">
+            </div>
+            <p class="header__subtitle">Name front end keywords</p>
+        </header>
+        <section class="form__container">
+            <div class="form__description">
+                <p>Come on, you can do</p>
+            </div>
+            <div class="form__input">
+                <input type="text" class="input__text" placeholder="Keyword">
+                <input type="submit" class="input__submit" value="Send">
+            </div>
+        </section>
+        <section class="section__game">
+            <div class="section__text--tip">
+                <p>Hover the field to get a tip</p>
+            </div>
+            <div class="game__section">
+                    <ul class="list__column">
+                        <li class="item__answer">
+                            <p class="p__text">Flex-start</p>
+                        </li>
+                        <li class="item__answer">
+                            <p class="p__text">Flex-start</p>        
+                        </li>
+                        <li class="item__answer">
+                            <p class="p__text">Flex-start</p>   
+                        </li>
+                        <li class="item__answer">
+                            <p class="p__text">Flex-start</p>     
+                        </li>
+                        <li class="item__answer">
+                            <p class="p__text">Flex-start</p> 
+                        </li>
+                    </ul>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer__score-game">
+                <p>Score: <span>0/10</span></p>
+            </div>
+            <div class="footer__timer">
+                <p class="footer__timer-text">5:00</p>
+            </div>
+        </footer>
+    </div>
     <script src="./index.js" defer></script>
 </body>
 
