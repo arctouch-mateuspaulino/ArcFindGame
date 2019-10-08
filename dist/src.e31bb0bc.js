@@ -118,7 +118,77 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-console.log('Hello World');
+var submitInput = document.querySelector(".input__submit");
+var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
+var counterGameScore = 0;
+var inputs = document.querySelector(".form__input");
+var scoreGame = document.querySelector(".footer__score-game span");
+submitInput.addEventListener("click", submit);
+
+function submit() {
+  var validateWrongAnswer = false;
+  var keyword = document.getElementById("input__text").value;
+  listItem.forEach(function (d, i) {
+    if (keyword.toUpperCase() == listItem[i].innerHTML.toUpperCase()) {
+      listItem[i].style.visibility = "visible";
+      counterGameScore++;
+      scoreGame.innerHTML = counterGameScore;
+      validateWrongAnswer = true;
+    }
+  });
+
+  if (validateWrongAnswer == false) {
+    inputs.className = "form__input wrong-answer";
+  }
+
+  setTimeout(function () {
+    inputs.className = "form__input";
+  }, 1000);
+  startTimer();
+}
+
+var flag = true;
+var duration = 300;
+
+function startTimer() {
+  if (flag == true) {
+    var counter = document.querySelector(".footer__timer-text");
+    var timer = duration,
+        min,
+        sec;
+    setInterval(function () {
+      min = parseInt(timer / 60);
+      sec = parseInt(timer % 60);
+      var timeEnd = "".concat(min, ":").concat(sec);
+      counter.innerHTML = timeEnd;
+      timer--;
+
+      if (timer < 0) {
+        counter.innerHTML = "The time is over";
+      }
+    }, 1000);
+    flag = false;
+  }
+}
+
+var liItem = document.querySelectorAll(".item__answer");
+
+function showTooltip() {
+  this.querySelector(".span__tooltip").style.display = "inline-block";
+  this.querySelector(".span__tooltip").style.transform = " translate(-50% , -50%)";
+}
+
+liItem.forEach(function (d, i) {
+  liItem[i].addEventListener("mouseover", showTooltip);
+});
+
+function hiddenTooltip() {
+  this.querySelector(".span__tooltip").style.display = "none";
+}
+
+liItem.forEach(function (d, i) {
+  liItem[i].addEventListener("mouseout", hiddenTooltip);
+});
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49592" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49536" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

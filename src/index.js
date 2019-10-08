@@ -5,7 +5,7 @@ var listItem = document.querySelectorAll(".list__column .item__answer .p__text")
 var counterGameScore = 0;
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
-console.log(scoreGame)
+
 
 submitInput.addEventListener("click", submit);
 
@@ -48,3 +48,24 @@ function startTimer(){
         flag = false;
     }
 }
+
+
+var liItem = document.querySelectorAll(".item__answer");
+
+function showTooltip(){
+    this.querySelector(".span__tooltip").style.display= "inline-block";
+    this.querySelector(".span__tooltip").style.transform = " translate(-50% , -50%)"
+}    
+
+liItem.forEach(function(d,i){
+    liItem[i].addEventListener("mouseover", showTooltip);
+})
+
+function hiddenTooltip(){
+    this.querySelector(".span__tooltip").style.display = "none";
+    
+}
+
+liItem.forEach(function(d,i){
+    liItem[i].addEventListener("mouseout", hiddenTooltip);
+})
