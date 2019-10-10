@@ -64,15 +64,11 @@ html, body {
   box-sizing: border-box;
 }
 
-body {
-  height: 100%;
-  background: linear-gradient(to top, #ff8402, #ff9b31);
-}
-
 .container {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  background: linear-gradient(to top, #ff8402, #ff9b31);
 }
 
 .header {
@@ -197,11 +193,12 @@ body {
   padding: 20px;
   text-align: center;
   border-radius: 15px;
-  top: -35px;
+  bottom: 50px;
   position: absolute;
   background: white;
   display: none;
-  transform: translate(-50%, -100%);
+  left: 0;
+  right: 0;
   animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
@@ -250,6 +247,48 @@ body {
 }
 .wrong-answer {
   animation: wrong-answer 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.modal__endgame {
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 1;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+}
+.modal__endgame .modal__container {
+  border: 2px solid white;
+  background: linear-gradient(to top, #ff8402, #ff9b31);
+  border-radius: 15px;
+  position: absolute;
+}
+.modal__endgame .modal__container .modal__icon {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 10px 0px;
+  position: absolute;
+  right: 0;
+}
+.modal__endgame .modal__container .modal__icon .modal__icon i {
+  cursor: pointer;
+}
+.modal__endgame .modal__container .modal__information p, .modal__endgame .modal__container h4 {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 1000;
+  color: white;
+  margin: 10px;
+  padding: 0 20px;
 }
 
 @media (min-width: 768px) {
@@ -305,8 +344,14 @@ body {
   }
 }
 @media (min-width: 1200px) {
+  body {
+    height: 100%;
+    background: linear-gradient(to top, #ff8402, #ff9b31);
+  }
+
   .container {
     max-width: 100%;
+    background: transparent;
   }
 
   .header .header__logo img {

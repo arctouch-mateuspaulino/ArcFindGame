@@ -4,6 +4,7 @@
 // Colors
 $red: #AA1F2E;
 $red-dark: #AB192D;
+$bg-color: linear-gradient(to top, #ff8402,#ff9b31 );
 
 // Sizes
 $desktop-size: 1280px;
@@ -12,18 +13,11 @@ $desktop-breakpoint: 768px;
 *{
     box-sizing: border-box;
 }
-body{
-    height: 100%; 
-    background: linear-gradient(to top, #ff8402,#ff9b31,);
-}
-body .container{
-    
-   
-}
 .container{
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+    background: $bg-color;
 }
 
 .header{
@@ -153,11 +147,12 @@ body .container{
     padding: 20px;
     text-align: center;
     border-radius: 15px;
-    top: -35px;
+    bottom: 50px;
     position: absolute;
     background: white;
     display: none;
-    transform: translate(-50% , -100%);
+    left: 0;
+    right: 0;
     animation: fadeOutTooltip .3s cubic-bezier(.36,.07,.19,.97) both ;
 }
 .span__tooltip:before{
@@ -213,8 +208,49 @@ body .container{
 .wrong-answer{
     animation: wrong-answer 1s cubic-bezier(.36,.07,.19,.97) both;
 }
-//toltip
 
+.modal__endgame{
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4s;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    
+    .modal__container{
+        border: 2px solid white;
+        background: linear-gradient(to top, #ff8402, #ff9b31);
+        border-radius: 15px;
+        position: absolute;
+        .modal__icon{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 10px 10px 0px;
+            position: absolute;
+            right: 0;
+                .modal__icon i{
+                    cursor: pointer;
+                }
+        }
+        .modal__information p, h4{
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 1000;
+            color: white; 
+            margin: 10px;
+            padding:  0 20px;
+        }
+    }
+}
 
 //media query tablet
 @media(min-width: 768px){
@@ -274,8 +310,13 @@ body .container{
 }
 //media query desktop
 @media(min-width: 1200px){
+    body{
+        height: 100%; 
+        background: $bg-color;
+    }
     .container{
         max-width: 100%;
+        background: transparent;
     }
     .header{
         .header__logo img{
@@ -323,12 +364,6 @@ body .container{
     }
     .footer{
         padding-left: 100px;
-        padding-right: 100px;
-        
+        padding-right: 100px; 
     }
 }
-
-
-
-
-

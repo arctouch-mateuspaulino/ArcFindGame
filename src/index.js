@@ -29,6 +29,7 @@ function submit(){
     startTimer();
 }
 
+//timer
 var flag = true;
 var duration = 300;
 function startTimer(){
@@ -43,18 +44,19 @@ function startTimer(){
             timer--;
             if(timer < 0){
                 counter.innerHTML = "The time is over";     
+                // var modalElement = document.querySelector(".modal__endgame");
+                // modalElement.style.display = "inline-block";        
             }
-        }, 1000);
+        }, 10);
         flag = false;
     }
 }
 
-
+//tooltip
 var liItem = document.querySelectorAll(".item__answer");
 
 function showTooltip(){
     this.querySelector(".span__tooltip").style.display= "inline-block";
-    this.querySelector(".span__tooltip").style.transform = " translate(-50% , -50%)"
 }    
 
 liItem.forEach(function(d,i){
@@ -69,3 +71,25 @@ function hiddenTooltip(){
 liItem.forEach(function(d,i){
     liItem[i].addEventListener("mouseout", hiddenTooltip);
 })
+
+
+//Show modal
+var btnShowModal = document.querySelector(".showModal");
+btnShowModal.addEventListener("click", showModal);
+function showModal(){
+    var modalElement = document.querySelector(".modal__endgame");
+    modalElement.style.display = "flex";
+}
+var iconCloseModal = document.querySelector(".fas");
+iconCloseModal.addEventListener("click", closeModal);
+function closeModal(){
+    var modalElement = document.querySelector(".modal__endgame");
+    modalElement.style.display = "none";
+}
+
+
+
+
+//verifica se o tempo acabou, se tiver abre o modal e calcula o tempo de jogo e mostra o score
+//se todas as palavras foram descobertas
+//switch case para verificar o numero de acertos e mostrar mensagem de acordo com o score

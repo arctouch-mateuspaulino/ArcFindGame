@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Arctouch Arcfind</title>
+    <script src="https://kit.fontawesome.com/936aaf5ec7.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <link rel="stylesheet" href="./styles/main.scss">
 </head>
@@ -25,6 +26,7 @@
             <div class="form__input">
                 <input type="text" class="input__text" id="input__text" placeholder="Keyword">
                 <input type="submit" class="input__submit" value="Send">
+                <input type="button" value="open" class="showModal">
             </div>
         </section>
         <section class="section__game">
@@ -128,8 +130,21 @@
             </div>
             <div class="footer__timer">
                 <p class="footer__timer-text">5:0</p>
+                
             </div>
         </footer>
+        <div class="modal__endgame">
+            <div class="modal__container">
+            <div class="modal__icon">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="modal__information">
+                    <h4>Congratulations</h4>
+                    <p>Your score is <span>??</span></p>
+                    <p>Time: <span>2:30</span></p>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="./index.js" defer></script>
 </body>
