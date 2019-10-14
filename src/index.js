@@ -10,6 +10,7 @@ var scoreGame = document.querySelector(".footer__score-game span");
 submitInput.addEventListener("click", submit);
 
 function submit(){
+    timesDuration()
     var validateWrongAnswer = false;
     var keyword = document.getElementById("input__text").value;
     listItem.forEach(function(d,i){
@@ -18,6 +19,15 @@ function submit(){
             counterGameScore++;
             scoreGame.innerHTML = counterGameScore;
             validateWrongAnswer= true;
+                if(counterGameScore == 20){
+                    var modalElement = document.querySelector(".modal__endgame");
+                    var score = document.querySelector(".span__score");
+                    var congratulation = document.querySelector(".modal__information h4");
+                    score.innerHTML = counterGameScore;
+                    congratulation.innerHTML = "Parabéns você acertou todas as palavras."
+                    modalElement.style.display = "flex";
+                    
+                }
         }
     })
     if(validateWrongAnswer == false){
@@ -28,7 +38,6 @@ function submit(){
     }, 1000);
     startTimer();
 }
-
 //timer
 var flag = true;
 var duration = 300;
@@ -36,18 +45,23 @@ function startTimer(){
     if(flag == true){
     var counter = document.querySelector(".footer__timer-text")
     var timer = duration, min, sec;
-    setInterval(function(){
+    var count = setInterval(function(){
             min = parseInt(timer / 60);
             sec = parseInt(timer % 60);
             var timeEnd = `${min}:${sec}`;
             counter.innerHTML = timeEnd;
             timer--;
+            timesDuration(timer);
             if(timer < 0){
-                counter.innerHTML = "The time is over";     
-                // var modalElement = document.querySelector(".modal__endgame");
-                // modalElement.style.display = "inline-block";        
+                counter.innerHTML = 0;
+                var modalElement = document.querySelector(".modal__endgame");  
+                modalElement.style.display = "flex"; 
+                var score = document.querySelector(".span__score");
+                score.innerHTML = counterGameScore;
+                timer = 0;
+                clearInterval(count);
             }
-        }, 10);
+        }, 1000);
         flag = false;
     }
 }
@@ -85,6 +99,7 @@ iconCloseModal.addEventListener("click", closeModal);
 function closeModal(){
     var modalElement = document.querySelector(".modal__endgame");
     modalElement.style.display = "none";
+    window.location.replace('index.html')
 }
 
 
@@ -93,3 +108,22 @@ function closeModal(){
 //verifica se o tempo acabou, se tiver abre o modal e calcula o tempo de jogo e mostra o score
 //se todas as palavras foram descobertas
 //switch case para verificar o numero de acertos e mostrar mensagem de acordo com o score
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function timesDuration(timer){
+
+}

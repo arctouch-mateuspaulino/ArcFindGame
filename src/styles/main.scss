@@ -92,6 +92,7 @@ $desktop-breakpoint: 768px;
     width: 100%;
     height: auto;
     margin-top: 15px;
+    padding: 5px;
 
         .section__text--tip{
             text-align: start;
@@ -100,12 +101,16 @@ $desktop-breakpoint: 768px;
             padding: 0px 10px;
             margin-bottom: 10px;
         }
+        .game__section{
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 20px 0px;
         .list__column{
             width: 100%;
             height: auto;
             text-align: center;
             box-sizing: border-box;
-            padding: 0px 10px;
+            padding: 0px 0px;
 
             .item__answer{
                 height: 35px;
@@ -130,6 +135,7 @@ $desktop-breakpoint: 768px;
                 background:#c4721b;
             }
         }
+    }
 }
 @keyframes fadeOutTooltip{
     from{
@@ -281,14 +287,19 @@ $desktop-breakpoint: 768px;
     }
     .section__game{
         margin-top: 25px;
+        padding: 0 40px;
         .section__text--tip{
             font-size: 25px;
             text-align: left;
-            padding: 0 40px;
             margin-bottom: 20px;
         }
+        .game__section{
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 20px 0;
+        }
         .list__column{
-            padding: 0 40px;
+            padding: 0;
             .item__answer{
                 height: 45px;
                 background: #f9b369;
@@ -297,6 +308,7 @@ $desktop-breakpoint: 768px;
             }
         }
     }
+    
     .footer{
         .footer__score-game{ 
             padding: 15px;
@@ -309,14 +321,14 @@ $desktop-breakpoint: 768px;
     }
 }
 //media query desktop
-@media(min-width: 1200px){
+@media(min-width: 1080px){
     body{
         height: 100%; 
         background: $bg-color;
     }
     .container{
         max-width: 100%;
-        background: transparent;
+        background: transparent
     }
     .header{
         .header__logo img{
@@ -343,20 +355,28 @@ $desktop-breakpoint: 768px;
     }
     .section__game{ 
         margin-top: 21px;
-        padding-left: 100px;
-        padding-right: 100px;
+        padding: 0 100px;
         .section__text--tip{
             padding: 20px;
         }
         .game__section{
             display: flex;
             width: 100%; 
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 20px 0;
+ 
+        }
+        .list__column:first-child{
+            padding-left: 0px;
+        }
+        .list__column:last-child{
+            padding-right: 0px;
         }
         .list__column{
             width: 25%;
-            padding: 20px;
-            border-top: 1px solid white;
-            border-bottom: 1px solid white;
+            padding: 0;
+            margin: 5px;
            .item__answer{
                width: 100%;
            }
