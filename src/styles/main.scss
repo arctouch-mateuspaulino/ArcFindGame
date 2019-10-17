@@ -13,9 +13,11 @@ $desktop-breakpoint: 768px;
 *{
     box-sizing: border-box;
 }
+
 .container{
     width: 100%;
     max-width: 1280px;
+    min-height: 100vh;
     margin: 0 auto;
     background: $bg-color;
 }
@@ -320,15 +322,12 @@ $desktop-breakpoint: 768px;
         }
     }
 }
+
+
 //media query desktop
-@media(min-width: 1080px){
-    body{
-        height: 100%; 
-        background: $bg-color;
-    }
+@media(min-width: 1200px){
     .container{
         max-width: 100%;
-        background: transparent
     }
     .header{
         .header__logo img{

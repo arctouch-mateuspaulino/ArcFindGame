@@ -123,10 +123,17 @@ var listItem = document.querySelectorAll(".list__column .item__answer .p__text")
 var counterGameScore = 0;
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
+var flag = true;
+var playerTime;
+var duration = 299;
+var count;
+var timeEnd;
+var timer = duration,
+    min,
+    sec;
 submitInput.addEventListener("click", submit);
 
 function submit() {
-  timesDuration();
   var validateWrongAnswer = false;
   var keyword = document.getElementById("input__text").value;
   listItem.forEach(function (d, i) {
@@ -137,12 +144,14 @@ function submit() {
       validateWrongAnswer = true;
 
       if (counterGameScore == 20) {
-        var modalElement = document.querySelector(".modal__endgame");
         var score = document.querySelector(".span__score");
         var congratulation = document.querySelector(".modal__information h4");
+        var time = document.querySelector(".span__time");
+        congratulation.innerHTML = "Congratulations on getting all the keywords right";
+        time.innerHTML = timePlayed;
         score.innerHTML = counterGameScore;
-        congratulation.innerHTML = "Parabéns você acertou todas as palavras.";
-        modalElement.style.display = "flex";
+        showModal();
+        clearInterval(count);
       }
     }
   });
@@ -158,36 +167,36 @@ function submit() {
 } //timer
 
 
-var flag = true;
-var duration = 300;
-
 function startTimer() {
   if (flag == true) {
     var counter = document.querySelector(".footer__timer-text");
-    var timer = duration,
-        min,
-        sec;
-    var count = setInterval(function () {
+    count = setInterval(function () {
       min = parseInt(timer / 60);
       sec = parseInt(timer % 60);
-      var timeEnd = "".concat(min, ":").concat(sec);
+      timeEnd = "".concat(min, ":").concat(sec);
       counter.innerHTML = timeEnd;
       timer--;
-      timesDuration(timer);
+      convertMinute(timer);
 
       if (timer < 0) {
-        counter.innerHTML = 0;
-        var modalElement = document.querySelector(".modal__endgame");
-        modalElement.style.display = "flex";
+        var time = document.querySelector(".span__time");
         var score = document.querySelector(".span__score");
         score.innerHTML = counterGameScore;
-        timer = 0;
+        time.innerHTML = timePlayed;
         clearInterval(count);
+        showModal();
       }
-    }, 1000);
+    }, 100);
     flag = false;
   }
-} //tooltip
+}
+
+function convertMinute(timer) {
+  var gameTime = 299 - timer;
+  min = parseInt(gameTime / 60);
+  sec = parseInt(gameTime % 60);
+  timePlayed = "".concat(min, ":").concat(sec);
+} //Tooltip Functions
 
 
 var liItem = document.querySelectorAll(".item__answer");
@@ -206,10 +215,7 @@ function hiddenTooltip() {
 
 liItem.forEach(function (d, i) {
   liItem[i].addEventListener("mouseout", hiddenTooltip);
-}); //Show modal
-
-var btnShowModal = document.querySelector(".showModal");
-btnShowModal.addEventListener("click", showModal);
+}); //Modal Functions
 
 function showModal() {
   var modalElement = document.querySelector(".modal__endgame");
@@ -223,12 +229,7 @@ function closeModal() {
   var modalElement = document.querySelector(".modal__endgame");
   modalElement.style.display = "none";
   window.location.replace('index.html');
-} //verifica se o tempo acabou, se tiver abre o modal e calcula o tempo de jogo e mostra o score
-//se todas as palavras foram descobertas
-//switch case para verificar o numero de acertos e mostrar mensagem de acordo com o score
-
-
-function timesDuration(timer) {}
+}
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -257,7 +258,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51110" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
