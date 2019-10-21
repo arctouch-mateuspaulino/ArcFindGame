@@ -120,10 +120,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"index.js":[function(require,module,exports) {
 var submitInput = document.querySelector(".input__submit");
 var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
-var counterGameScore = 0;
+var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
 var flag = true;
+var counterGameScore = 0;
 var playerTime;
 var duration = 299;
 var count;
@@ -150,12 +151,6 @@ function submit() {
       validateWrongAnswer = true;
 
       if (counterGameScore == 20) {
-        var score = document.querySelector(".span__score");
-        var congratulation = document.querySelector(".modal__information h4");
-        var time = document.querySelector(".span__time");
-        congratulation.innerHTML = "Congratulations on getting all the keywords right";
-        time.innerHTML = timePlayed;
-        score.innerHTML = counterGameScore;
         showModal();
         clearInterval(count);
       }
@@ -185,14 +180,10 @@ function startTimer() {
       convertMinute(timer);
 
       if (timer < 0) {
-        var time = document.querySelector(".span__time");
-        var score = document.querySelector(".span__score");
-        score.innerHTML = counterGameScore;
-        time.innerHTML = timePlayed;
         clearInterval(count);
         showModal();
       }
-    }, 1000);
+    }, 100);
     flag = false;
   }
 }
@@ -225,7 +216,12 @@ liItem.forEach(function (d, i) {
 
 function showModal() {
   var modalElement = document.querySelector(".modal__endgame");
+  var score = document.querySelector(".span__score");
+  var time = document.querySelector(".span__time");
   modalElement.style.display = "flex";
+  message.innerHTML = "Congratulations on getting all the keywords right";
+  time.innerHTML = timePlayed;
+  score.innerHTML = counterGameScore;
 }
 
 var iconCloseModal = document.querySelector(".fas");

@@ -46,6 +46,7 @@ $desktop-breakpoint: 768px;
     height: auto;
     text-align: center;
     margin-top: 15px;
+    overflow: hidden;
 
         &__description, p {
             font-family: 'Roboto', sans-serif;

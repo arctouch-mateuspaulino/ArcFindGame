@@ -94,6 +94,7 @@ html, body {
   height: auto;
   text-align: center;
   margin-top: 15px;
+  overflow: hidden;
 }
 .form__container__description, .form__container p {
   font-family: "Roboto", sans-serif;

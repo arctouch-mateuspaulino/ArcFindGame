@@ -1,11 +1,10 @@
-
-
 var submitInput = document.querySelector(".input__submit");
-var listItem = document.querySelectorAll(".list__column .item__answer .p__text")
-var counterGameScore = 0;
+var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
+var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
 var flag = true;
+var counterGameScore = 0;
 var playerTime;
 var duration = 299;
 var count;
@@ -26,32 +25,28 @@ function submit(){
             listItem[i].style.visibility = "visible";
             counterGameScore++;
             scoreGame.innerHTML = counterGameScore;
-            validateWrongAnswer= true;
+            validateWrongAnswer = true;
                 if(counterGameScore == 20){
-                    var score = document.querySelector(".span__score");
-                    var congratulation = document.querySelector(".modal__information h4");
-                    var time = document.querySelector(".span__time");
-                    congratulation.innerHTML = "Congratulations on getting all the keywords right"
-                    time.innerHTML =  timePlayed;
-                    score.innerHTML = counterGameScore;
                     showModal();
                     clearInterval(count);
                 }
             }
     })
-    if(validateWrongAnswer == false){
-        inputs.className = "form__input wrong-answer";
-    }  
-    setTimeout(function(){
-        inputs.className = "form__input";
-    }, 1000);
+        if(validateWrongAnswer == false){
+            inputs.className = "form__input wrong-answer";
+        }  
+        setTimeout(function(){
+            inputs.className = "form__input";
+        }, 1000);
     startTimer();
     CleanInput()
 }
+
+
 function startTimer(){
   if(flag == true){
     var counter = document.querySelector(".footer__timer-text")
-      count = setInterval(function(){
+    count = setInterval(function(){
           min = parseInt(timer / 60);
           sec = parseInt(timer % 60);
           timeEnd = `${min}:${sec}`;
@@ -59,14 +54,10 @@ function startTimer(){
           timer--;
           convertMinute(timer);
             if(timer < 0){
-              var time = document.querySelector(".span__time");
-              var score = document.querySelector(".span__score"); 
-              score.innerHTML = counterGameScore;
-              time.innerHTML =  timePlayed;
               clearInterval(count);
               showModal();
             }          
-      }, 1000);
+      }, 100);
     flag = false;
   }
 }
@@ -80,7 +71,7 @@ function convertMinute(timer){
 //Tooltip Functions
 var liItem = document.querySelectorAll(".item__answer");
 function showTooltip(){
-    this.querySelector(".span__tooltip").style.display= "inline-block";
+    this.querySelector(".span__tooltip").style.display = "inline-block";
 }    
 liItem.forEach(function(d,i){
     liItem[i].addEventListener("mouseover", showTooltip);
@@ -98,17 +89,22 @@ liItem.forEach(function(d,i){
 //Modal Functions
 function showModal(){
     var modalElement = document.querySelector(".modal__endgame");
+    var score = document.querySelector(".span__score");
+    var time = document.querySelector(".span__time");
     modalElement.style.display = "flex";
+    message.innerHTML = "Congratulations on getting all the keywords right"
+    time.innerHTML =  timePlayed;
+    score.innerHTML = counterGameScore;
 }
+
 var iconCloseModal = document.querySelector(".fas");
 iconCloseModal.addEventListener("click", closeModal);
+
 function closeModal(){
     var modalElement = document.querySelector(".modal__endgame");
     modalElement.style.display = "none";
     window.location.replace('index.html')
 }
-
-
 
 function CleanInput(){
     var keyword = document.getElementById("input__text").value = "";
