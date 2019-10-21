@@ -12,8 +12,12 @@ var count;
 var timeEnd;
 var timer = duration, min, sec;
 
-
 submitInput.addEventListener("click", submit);
+document.onkeyup=function(e){
+    if(e.which == 13){
+        submit();
+    }
+}
 function submit(){
     var validateWrongAnswer = false;
     var keyword = document.getElementById("input__text").value;
@@ -33,7 +37,7 @@ function submit(){
                     showModal();
                     clearInterval(count);
                 }
-        }
+            }
     })
     if(validateWrongAnswer == false){
         inputs.className = "form__input wrong-answer";
@@ -42,8 +46,8 @@ function submit(){
         inputs.className = "form__input";
     }, 1000);
     startTimer();
+    CleanInput()
 }
-//timer
 function startTimer(){
   if(flag == true){
     var counter = document.querySelector(".footer__timer-text")
@@ -62,7 +66,7 @@ function startTimer(){
               clearInterval(count);
               showModal();
             }          
-      }, 100);
+      }, 1000);
     flag = false;
   }
 }
@@ -106,3 +110,6 @@ function closeModal(){
 
 
 
+function CleanInput(){
+    var keyword = document.getElementById("input__text").value = "";
+}
