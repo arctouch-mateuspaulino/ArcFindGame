@@ -219,9 +219,9 @@ function showModal() {
   var score = document.querySelector(".span__score");
   var time = document.querySelector(".span__time");
   modalElement.style.display = "flex";
-  message.innerHTML = "Congratulations on getting all the keywords right";
   time.innerHTML = timePlayed;
   score.innerHTML = counterGameScore;
+  setMessage(counterGameScore);
 }
 
 var iconCloseModal = document.querySelector(".fas");
@@ -235,6 +235,20 @@ function closeModal() {
 
 function CleanInput() {
   var keyword = document.getElementById("input__text").value = "";
+}
+
+function setMessage(score) {
+  if (score <= 5) {
+    message.innerHTML = "You do con better";
+  } else if (score > 5 && score <= 10) {
+    message.innerHTML = "You are getting better, try again.";
+  } else if (score > 10 && score <= 15) {
+    message.innerHTML = "You are near the victory";
+  } else if (score > 15) {
+    message.innerHTML = "Congratulations on getting all the keywords right";
+  } else {
+    message.innerHTML = "Congratulations";
+  }
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -264,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49562" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49520" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

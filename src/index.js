@@ -17,6 +17,7 @@ document.onkeyup=function(e){
         submit();
     }
 }
+
 function submit(){
     var validateWrongAnswer = false;
     var keyword = document.getElementById("input__text").value;
@@ -92,9 +93,9 @@ function showModal(){
     var score = document.querySelector(".span__score");
     var time = document.querySelector(".span__time");
     modalElement.style.display = "flex";
-    message.innerHTML = "Congratulations on getting all the keywords right"
     time.innerHTML =  timePlayed;
     score.innerHTML = counterGameScore;
+    setMessage(counterGameScore);
 }
 
 var iconCloseModal = document.querySelector(".fas");
@@ -108,4 +109,18 @@ function closeModal(){
 
 function CleanInput(){
     var keyword = document.getElementById("input__text").value = "";
+}
+
+function setMessage(score){
+    if(score <= 5){
+        message.innerHTML = "You do con better";
+    }else if(score > 5 && score <=10){
+        message.innerHTML = "You are getting better, try again.";
+    }else if(score >10 && score <=15){
+        message.innerHTML = "You are near the victory";
+    }else if(score > 15){
+        message.innerHTML = "Congratulations on getting all the keywords right";
+    }else{
+        message.innerHTML = "Congratulations"
+    }
 }
