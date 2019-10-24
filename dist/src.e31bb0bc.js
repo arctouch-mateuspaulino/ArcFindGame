@@ -125,18 +125,16 @@ var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
 var flag = true;
 var counterGameScore = 0;
-var playerTime;
 var duration = 299;
 var count;
-var timeEnd;
 var timer = duration,
     min,
     sec;
-var wordsList = [];
+var wordsFound = [];
 submitInput.addEventListener("click", submit);
 
-document.onkeyup = function (e) {
-  if (e.which == 13) {
+document.onkeyup = function (Key) {
+  if (Key.which == 13) {
     submit();
   }
 };
@@ -144,12 +142,11 @@ document.onkeyup = function (e) {
 function submit() {
   var validateWrongAnswer = false;
   var keyword = document.getElementById("input__text").value;
-  listItem.forEach(function (d, i) {
-    if (keyword.toUpperCase() == listItem[i].innerHTML.toUpperCase()) {
-      validateWrongAnswer = verifyWordList(listItem[i]);
+  listItem.forEach(function (item, i) {
+    if (keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
+      validateWrongAnswer = verifyWordList(item);
     }
   });
-  debugger;
 
   if (validateWrongAnswer == false) {
     inputs.className = "form__input wrong-answer";
@@ -163,51 +160,49 @@ function submit() {
 }
 
 function verifyWordList(words) {
-  var isValidWord = null;
-
-  if (!wordsList.includes(words)) {
+  if (!wordsFound.includes(words)) {
     words.style.visibility = "visible";
     counterGameScore++;
     scoreGame.innerHTML = counterGameScore;
-    wordsList.push(words);
-    isValidWord = true;
+    wordsFound.push(words);
 
     if (counterGameScore == 20) {
       showModal();
       clearInterval(count);
     }
-  } else {
-    isValidWord = false;
+
+    return true;
   }
 
-  return isValidWord;
+  return false;
 }
 
 function startTimer() {
   if (flag == true) {
     var counter = document.querySelector(".footer__timer-text");
     count = setInterval(function () {
-      min = parseInt(timer / 60);
-      sec = parseInt(timer % 60);
-      timeEnd = "".concat(min, ":").concat(sec);
-      counter.innerHTML = timeEnd;
+      counter.innerHTML = allGameTime(timer);
       timer--;
-      convertMinute(timer);
+      timePlayer(timer);
 
       if (timer < 0) {
         clearInterval(count);
         showModal();
       }
-    }, 100);
+    }, 10);
     flag = false;
   }
 }
 
-function convertMinute(timer) {
-  var gameTime = 299 - timer;
-  min = parseInt(gameTime / 60);
-  sec = parseInt(gameTime % 60);
-  timePlayed = "".concat(min, ":").concat(sec);
+function timePlayer(timer) {
+  var gameTimePlayer = 299 - timer;
+  allGameTime(gameTimePlayer);
+}
+
+function allGameTime(timer) {
+  min = parseInt(timer / 60);
+  sec = parseInt(timer % 60);
+  return timePlayed = "".concat(min, ":").concat(sec);
 } //Tooltip Functions
 
 
