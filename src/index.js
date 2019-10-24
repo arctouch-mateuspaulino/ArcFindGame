@@ -10,6 +10,7 @@ var duration = 299;
 var count;
 var timeEnd;
 var timer = duration, min, sec;
+var wordsList = [];
 
 submitInput.addEventListener("click", submit);
 document.onkeyup=function(e){
@@ -23,16 +24,10 @@ function submit(){
     var keyword = document.getElementById("input__text").value;
     listItem.forEach(function(d,i){
         if(keyword.toUpperCase() == listItem[i].innerHTML.toUpperCase()){
-            listItem[i].style.visibility = "visible";
-            counterGameScore++;
-            scoreGame.innerHTML = counterGameScore;
-            validateWrongAnswer = true;
-                if(counterGameScore == 20){
-                    showModal();
-                    clearInterval(count);
-                }
-            }
+            validateWrongAnswer = verifyWordList(listItem[i]);   
+        }
     })
+        debugger
         if(validateWrongAnswer == false){
             inputs.className = "form__input wrong-answer";
         }  
@@ -43,6 +38,24 @@ function submit(){
     CleanInput()
 }
 
+function verifyWordList(words){
+    var isValidWord = null; 
+
+    if(!wordsList.includes(words)){
+        words.style.visibility = "visible";
+        counterGameScore++;
+        scoreGame.innerHTML = counterGameScore;
+        wordsList.push(words);
+        isValidWord = true
+           if(counterGameScore == 20){
+               showModal();
+               clearInterval(count);
+           }
+    }else{
+       isValidWord = false 
+    }
+    return isValidWord
+}
 
 function startTimer(){
   if(flag == true){
@@ -113,7 +126,7 @@ function CleanInput(){
 
 function setMessage(score){
     if(score <= 5){
-        message.innerHTML = "You do con better";
+        message.innerHTML = "You can do better";
     }else if(score > 5 && score <=10){
         message.innerHTML = "You are getting better, try again.";
     }else if(score >10 && score <=15){
