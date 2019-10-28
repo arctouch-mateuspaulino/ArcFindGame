@@ -148,15 +148,17 @@ function submit() {
     }
   });
 
-  if (validateWrongAnswer == false) {
-    inputs.className = "form__input wrong-answer";
-  }
+  if (keyword == "") {} else {
+    if (validateWrongAnswer == false) {
+      inputs.className = "form__input wrong-answer";
+    }
 
-  setTimeout(function () {
-    inputs.className = "form__input";
-  }, 1000);
-  startTimer();
-  CleanInput();
+    setTimeout(function () {
+      inputs.className = "form__input";
+    }, 1000);
+    startTimer();
+    CleanInput();
+  }
 }
 
 function verifyWordList(words) {
@@ -189,7 +191,7 @@ function startTimer() {
         clearInterval(count);
         showModal();
       }
-    }, 10);
+    }, 1000);
     flag = false;
   }
 }
@@ -288,7 +290,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49570" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49651" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

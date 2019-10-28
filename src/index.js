@@ -22,17 +22,21 @@ function submit(){
     var keyword = document.getElementById("input__text").value;
     listItem.forEach(function(item,i){
         if(keyword.toUpperCase() == item.innerHTML.toUpperCase()){
-            validateWrongAnswer = verifyWordList(item);   
+            validateWrongAnswer = verifyWordList(item);
         }
     })
-        if(validateWrongAnswer == false){
-            inputs.className = "form__input wrong-answer";
-        }  
-        setTimeout(function(){
-            inputs.className = "form__input";
-        }, 1000);
-    startTimer();
-    CleanInput()
+    if(keyword == ""){
+            
+    }else{
+            if(validateWrongAnswer == false){
+                inputs.className = "form__input wrong-answer";
+            }  
+            setTimeout(function(){
+                inputs.className = "form__input";
+            }, 1000);
+        startTimer();
+        CleanInput()
+    }
 }
 
 function verifyWordList(words){
@@ -61,7 +65,7 @@ function startTimer(){
               clearInterval(count);
               showModal();
             }          
-      }, 10);
+      }, 1000);
     flag = false;
   }
 }
@@ -121,9 +125,9 @@ function CleanInput(){
 function setMessage(score){
     if(score <= 5){
         message.innerHTML = "You can do better";
-    }else if(score > 5 && score <=10){
+    }else if(score > 5 && score <= 10){
         message.innerHTML = "You are getting better, try again.";
-    }else if(score >10 && score <=15){
+    }else if(score > 10 && score <= 15){
         message.innerHTML = "You are near the victory";
     }else if(score > 15){
         message.innerHTML = "Congratulations on getting all the keywords right";
