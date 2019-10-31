@@ -1,10 +1,10 @@
 var submitInput = document.querySelector(".input__submit");
 var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
-var wordSelected = document.querySelectorAll("item__answer .item__answer__hover");
 var icon = document.querySelectorAll(".list__column .item__answer .fa-check");
 var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
+var showWord = document.querySelectorAll(".item__answer .span_answer");
 var flag = true;
 var counterGameScore = 0;
 var duration = 299;
@@ -24,7 +24,7 @@ function submit(){
     var keyword = document.getElementById("input__text").value;
     listItem.forEach(function(item,i){
         if(keyword.toUpperCase() == item.innerHTML.toUpperCase()){
-            validateWrongAnswer = verifyWordList(item, icon[i]);
+            validateWrongAnswer = verifyWordList(item, icon[i], showWord[i]);
         }
     })
     if(keyword == ""){
@@ -41,11 +41,12 @@ function submit(){
     }
 }
 
-function verifyWordList(words, icon){
+function verifyWordList(words, icon, showWordSpan){
     if(!wordsFound.includes(words)){
         words.style.visibility = "visible";
+        words.parentElement.classList.remove("not-selected");
         icon.style.visibility = "visible";
-        wordSelected.className = "item__answer";
+        showWordSpan.innerHTML = words.innerHTML;
         counterGameScore++;
         scoreGame.innerHTML = counterGameScore;
         wordsFound.push(words);
@@ -87,7 +88,7 @@ function allGameTime(timer){
 //Tooltip Functions
 var liItem = document.querySelectorAll(".item__answer");
 function showTooltip(){
-    this.querySelector(".span__tooltip").style.display = "inline-block";
+    this.querySelector(".p__tooltip").style.display = "inline-block";
 }    
 liItem.forEach(function(d,i){
     liItem[i].addEventListener("mouseover", showTooltip);
@@ -95,7 +96,7 @@ liItem.forEach(function(d,i){
 
 
 function hiddenTooltip(){
-    this.querySelector(".span__tooltip").style.display = "none";
+    this.querySelector(".p__tooltip").style.display = "none";
 }
 liItem.forEach(function(d,i){
     liItem[i].addEventListener("mouseout", hiddenTooltip);

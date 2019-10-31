@@ -187,10 +187,6 @@ html, body {
   color: white;
   font-family: Arial, Helvetica;
 }
-.section__game .game__section .list__column .item__answer:hover {
-  border: 2px solid white;
-  background: transparent;
-}
 .section__game .game__section .list__column .item__answer .p__text {
   width: 100%;
   height: 100%;
@@ -202,6 +198,11 @@ html, body {
   position: absolute;
   background: #ff9b31;
   border-radius: 5px;
+  border: 1px solid white;
+}
+.section__game .game__section .list__column .item__answer.not-selected:hover {
+  border: 2px solid white;
+  background: transparent;
 }
 .section__game .game__section .list__column .item__answer .fa-check {
   color: #A2F16B;
@@ -222,7 +223,7 @@ html, body {
     opacity: 1;
   }
 }
-.span__tooltip {
+.p__tooltip {
   box-sizing: border-box;
   width: 100%;
   height: auto;
@@ -239,8 +240,11 @@ html, body {
   animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   font-family: Arial, Helvetica;
 }
+.p__tooltip .span_answer {
+  text-decoration: underline;
+}
 
-.span__tooltip:before {
+.p__tooltip:before {
   content: " ";
   position: absolute;
   width: 20px;
@@ -301,33 +305,37 @@ html, body {
   position: fixed;
   justify-content: center;
   align-items: center;
+  background: rgba(0, 0, 0, 0.3);
 }
 .modal__endgame .modal__container {
-  width: 300px;
-  height: auto;
+  width: 500px;
+  height: 150px;
   border: 2px solid white;
   background: linear-gradient(to top, #ff8402, #ff9b31);
   border-radius: 15px;
   position: absolute;
 }
 .modal__endgame .modal__container .modal__icon {
-  width: 100%;
-  height: auto;
   display: flex;
   justify-content: flex-end;
   padding: 10px 10px 10px 0px;
-  position: absolute;
   right: 0;
 }
 .modal__endgame .modal__container .modal__icon i {
   cursor: pointer;
 }
+.modal__endgame .modal__container .modal__information {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
 .modal__endgame .modal__container .modal__information p, .modal__endgame .modal__container h4 {
+  font-size: 20px;
   text-align: center;
+  margin: 5px;
   font-family: "Roboto", sans-serif;
   font-weight: 1000;
   color: white;
-  margin: 10px;
   padding: 0 20px;
 }
 
