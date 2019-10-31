@@ -80,13 +80,16 @@ html, body {
 .header .header__logo {
   width: 100%;
   height: auto;
+  margin-top: 40px;
 }
 .header .header__logo img {
   width: 140px;
 }
 .header .header__subtitle {
+  margin-top: 20px;
   font-family: "Open Sans", sans-serif;
   color: #54555a;
+  font-size: 20px;
 }
 
 .form__container {
@@ -112,14 +115,15 @@ html, body {
   width: 60%;
   height: 35px;
   font-size: 12px;
-  background: #64656b;
+  background: #777779;
   border: none;
-  color: #cbcaca;
+  color: #d4d3d3;
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 15px;
+  border-radius: 5px 0px 0px 5px;
 }
 .form__container .form__input ::placeholder {
-  color: #cbcaca;
+  color: #d4d3d3;
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -127,13 +131,14 @@ html, body {
   border: none;
   width: 20%;
   height: 35px;
-  background: #64656b;
+  background: #58595f;
   color: white;
   border-left: 1px solid white;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .input__submit:hover {
-  background: #4f5055;
+  background: #48494e;
 }
 
 .section__game {
@@ -142,17 +147,22 @@ html, body {
   margin-top: 15px;
   padding: 5px;
 }
+.section__game .section__message {
+  text-align: center;
+  font-family: Arial, Helvetica;
+  color: white;
+  margin-bottom: 20px;
+}
 .section__game .section__text--tip {
   text-align: start;
   font-family: Arial, Helvetica;
-  color: #54555a;
+  color: white;
   padding: 0px 10px;
-  margin-bottom: 10px;
+  font-size: 20px;
 }
 .section__game .game__section {
-  border-top: 1px solid white;
   border-bottom: 1px solid white;
-  padding: 20px 0px;
+  padding: 0px 0px 20px 0px;
 }
 .section__game .game__section .list__column {
   width: 100%;
@@ -163,14 +173,23 @@ html, body {
 }
 .section__game .game__section .list__column .item__answer {
   height: 35px;
-  background: #f9b369;
+  background: #ffdfc2;
   margin-top: 7px;
   position: relative;
+  display: flex;
+  transition: 0.3s;
+  border-radius: 5px;
+  justify-content: space-between;
 }
 .section__game .game__section .list__column .item__answer .p__text {
   text-align: center;
   padding-top: 5px;
   color: white;
+  font-family: Arial, Helvetica;
+}
+.section__game .game__section .list__column .item__answer:hover {
+  border: 2px solid white;
+  background: transparent;
 }
 .section__game .game__section .list__column .item__answer .p__text {
   width: 100%;
@@ -181,7 +200,18 @@ html, body {
   color: white;
   visibility: hidden;
   position: absolute;
-  background: #c4721b;
+  background: #ff9b31;
+  border-radius: 5px;
+}
+.section__game .game__section .list__column .item__answer .fa-check {
+  color: #A2F16B;
+  visibility: hidden;
+  position: absolute;
+  text-align: right;
+}
+.section__game .game__section .list__column .fa-check {
+  right: 0;
+  margin: 10px 10px 10px 0;
 }
 
 @keyframes fadeOutTooltip {
@@ -207,6 +237,7 @@ html, body {
   left: 0;
   right: 0;
   animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  font-family: Arial, Helvetica;
 }
 
 .span__tooltip:before {
@@ -272,6 +303,8 @@ html, body {
   align-items: center;
 }
 .modal__endgame .modal__container {
+  width: 300px;
+  height: auto;
   border: 2px solid white;
   background: linear-gradient(to top, #ff8402, #ff9b31);
   border-radius: 15px;
@@ -286,7 +319,7 @@ html, body {
   position: absolute;
   right: 0;
 }
-.modal__endgame .modal__container .modal__icon .modal__icon i {
+.modal__endgame .modal__container .modal__icon i {
   cursor: pointer;
 }
 .modal__endgame .modal__container .modal__information p, .modal__endgame .modal__container h4 {
@@ -327,7 +360,7 @@ html, body {
     padding: 0 40px;
   }
   .section__game .section__text--tip {
-    font-size: 25px;
+    font-size: 30px;
     text-align: left;
   }
   .section__game .game__section {
@@ -355,14 +388,14 @@ html, body {
     width: 160px;
   }
   .header .header__subtitle {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .form__container {
     margin-top: 80px;
   }
   .form__container .form__description p {
-    font-size: 27px;
+    font-size: 25px;
   }
   .form__container .form__input {
     margin-top: 12px;

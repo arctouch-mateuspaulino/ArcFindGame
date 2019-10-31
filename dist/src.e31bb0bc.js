@@ -120,6 +120,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"index.js":[function(require,module,exports) {
 var submitInput = document.querySelector(".input__submit");
 var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
+var wordSelected = document.querySelectorAll("item__answer .item__answer__hover");
+var icon = document.querySelectorAll(".list__column .item__answer .fa-check");
 var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
@@ -144,7 +146,7 @@ function submit() {
   var keyword = document.getElementById("input__text").value;
   listItem.forEach(function (item, i) {
     if (keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
-      validateWrongAnswer = verifyWordList(item);
+      validateWrongAnswer = verifyWordList(item, icon[i]);
     }
   });
 
@@ -161,9 +163,11 @@ function submit() {
   }
 }
 
-function verifyWordList(words) {
+function verifyWordList(words, icon) {
   if (!wordsFound.includes(words)) {
     words.style.visibility = "visible";
+    icon.style.visibility = "visible";
+    wordSelected.className = "item__answer";
     counterGameScore++;
     scoreGame.innerHTML = counterGameScore;
     wordsFound.push(words);
@@ -236,7 +240,7 @@ function showModal() {
   setMessage(counterGameScore);
 }
 
-var iconCloseModal = document.querySelector(".fas");
+var iconCloseModal = document.querySelector(".fa-times");
 iconCloseModal.addEventListener("click", closeModal);
 
 function closeModal() {
@@ -290,7 +294,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49651" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49542" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
