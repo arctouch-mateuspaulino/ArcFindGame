@@ -107,9 +107,14 @@ liItem.forEach(function(d,i){
 function showModal(){
     var modalElement = document.querySelector(".modal__endgame");
     var score = document.querySelector(".span__score");
-    var time = document.querySelector(".span__time");
+    var time = document.querySelector(".p__time");
+    var scoreTime = document.querySelector(".span__time");
     modalElement.style.display = "flex";
-    time.innerHTML =  timePlayed;
+    if(timer < 0){
+        time.innerHTML = "timesOut";
+    }else{ 
+        scoreTime.innerHTML = timePlayed;
+    } 
     score.innerHTML = counterGameScore;
     setMessage(counterGameScore);
 }
@@ -120,7 +125,7 @@ iconCloseModal.addEventListener("click", closeModal);
 function closeModal(){
     var modalElement = document.querySelector(".modal__endgame");
     modalElement.style.display = "none";
-    window.location.replace('index.html')
+    window.location.replace('index.html');
 }
 
 function CleanInput(){

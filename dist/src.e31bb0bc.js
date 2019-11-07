@@ -234,9 +234,16 @@ liItem.forEach(function (d, i) {
 function showModal() {
   var modalElement = document.querySelector(".modal__endgame");
   var score = document.querySelector(".span__score");
-  var time = document.querySelector(".span__time");
+  var time = document.querySelector(".p__time");
+  var scoreTime = document.querySelector(".span__time");
   modalElement.style.display = "flex";
-  time.innerHTML = timePlayed;
+
+  if (timer < 0) {
+    time.innerHTML = "timesOut";
+  } else {
+    scoreTime.innerHTML = timePlayed;
+  }
+
   score.innerHTML = counterGameScore;
   setMessage(counterGameScore);
 }
@@ -295,7 +302,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49542" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

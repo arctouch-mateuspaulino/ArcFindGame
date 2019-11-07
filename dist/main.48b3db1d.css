@@ -214,6 +214,9 @@ html, body {
   right: 0;
   margin: 10px 10px 10px 0;
 }
+.section__game .span_answer {
+  color: orange;
+}
 
 @keyframes fadeOutTooltip {
   from {
@@ -323,11 +326,16 @@ html, body {
 }
 .modal__endgame .modal__container .modal__icon i {
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
 }
 .modal__endgame .modal__container .modal__information {
   width: 100%;
   height: 100%;
   display: inline-block;
+}
+.modal__endgame .modal__container .modal__information .times__out__message {
+  visibility: hidden;
+  position: absolute;
 }
 .modal__endgame .modal__container .modal__information p, .modal__endgame .modal__container h4 {
   font-size: 20px;
