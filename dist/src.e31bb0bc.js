@@ -125,7 +125,10 @@ var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
 var showWord = document.querySelectorAll(".item__answer .span_answer");
+var setMessageTips = document.querySelector(".section__message");
 var flag = true;
+var foundIsTrue = false;
+var subWordFound = false;
 var counterGameScore = 0;
 var duration = 299;
 var count;
@@ -139,20 +142,31 @@ document.onkeyup = function (Key) {
   if (Key.which == 13) {
     submit();
   }
-}; //usar o substring para verificar as lestras, usar um indice para ir pegando mais uma letra dentro de um for
-//e caso as letras sejam diferentes adiciona no contador.llk`
-
+};
 
 function submit() {
+  subWordFound = false;
+  foundIsTrue = false;
   var validateWrongAnswer = false;
   var keyword = document.getElementById("input__text").value;
   listItem.forEach(function (item, i) {
-    validateWord(item.innerHTML, keyword);
-
     if (keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
       validateWrongAnswer = verifyWordList(item, icon[i], showWord[i]);
+      foundIsTrue = true;
+      setMessageTips.style.display = "none";
     }
   });
+
+  if (foundIsTrue == false) {
+    listItem.forEach(function (item, i) {
+      validateWord(item.innerHTML, keyword);
+    });
+  }
+
+  if (foundIsTrue == false && subWordFound == false) {
+    setMessageTips.style.display = "block";
+    setMessageTips.innerHTML = "A palavra não existe";
+  }
 
   if (!keyword == "") {
     if (validateWrongAnswer == false) {
@@ -168,14 +182,9 @@ function submit() {
 }
 
 function validateWord(wordList, keyword) {
-  var substringWordlist = wordList.substring(3);
-  var substringKeyword = keyword.substring(3);
-  var setMessageTips = document.querySelector(".section__message");
-
-  if (substringKeyword == substringWordlist) {
-    setMessageTips.innerHTML = "Você esta perto";
-  } else {
-    setMessageTips.innerHTML = "Errou";
+  if (wordList.toUpperCase().includes(keyword.toUpperCase())) {
+    subWordFound = true;
+    setMessageTips.innerHTML = "Você está perto";
   }
 }
 
