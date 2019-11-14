@@ -18,29 +18,40 @@ document.onkeyup=function(Key){
         submit();
     }
 }
-
+//usar o substring para verificar as lestras, usar um indice para ir pegando mais uma letra dentro de um for
+//e caso as letras sejam diferentes adiciona no contador.llk`
 function submit(){
     var validateWrongAnswer = false;
     var keyword = document.getElementById("input__text").value;
+
     listItem.forEach(function(item,i){
+        validateWord(item.innerHTML, keyword);
         if(keyword.toUpperCase() == item.innerHTML.toUpperCase()){
             validateWrongAnswer = verifyWordList(item, icon[i], showWord[i]);
         }
     })
-    if(keyword == ""){
-            
-    }else{
-            if(validateWrongAnswer == false){
-                inputs.className = "form__input wrong-answer";
-            }  
-            setTimeout(function(){
-                inputs.className = "form__input";
-            }, 1000);
-        startTimer();
-        CleanInput()
+    if(!keyword == ""){
+        if(validateWrongAnswer == false){
+            inputs.className = "form__input wrong-answer";
+        }  
+        setTimeout(function(){
+            inputs.className = "form__input";
+        }, 1000);
+    startTimer();
+    CleanInput()   
     }
 }
 
+function validateWord(wordList, keyword){
+    var substringWordlist = wordList.substring(3);
+    var substringKeyword = keyword.substring(3);
+    var setMessageTips = document.querySelector(".section__message");
+    if(substringKeyword == substringWordlist){
+        setMessageTips.innerHTML = "Você esta perto"
+    }else{
+        setMessageTips.innerHTML = "Errou"
+    }
+}
 function verifyWordList(words, icon, showWordSpan){
     if(!wordsFound.includes(words)){
         words.style.visibility = "visible";
@@ -49,7 +60,7 @@ function verifyWordList(words, icon, showWordSpan){
         showWordSpan.innerHTML = words.innerHTML;
         counterGameScore++;
         scoreGame.innerHTML = counterGameScore;
-        wordsFound.push(words);
+        wordsFound.push(words.innerHTML.toLowerCase());
         if(counterGameScore == 20){
             showModal();
             clearInterval(count);
@@ -145,3 +156,5 @@ function setMessage(score){
         message.innerHTML = "Congratulations"
     }
 }
+
+

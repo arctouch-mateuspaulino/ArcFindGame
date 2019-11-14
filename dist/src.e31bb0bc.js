@@ -139,18 +139,22 @@ document.onkeyup = function (Key) {
   if (Key.which == 13) {
     submit();
   }
-};
+}; //usar o substring para verificar as lestras, usar um indice para ir pegando mais uma letra dentro de um for
+//e caso as letras sejam diferentes adiciona no contador.llk`
+
 
 function submit() {
   var validateWrongAnswer = false;
   var keyword = document.getElementById("input__text").value;
   listItem.forEach(function (item, i) {
+    validateWord(item.innerHTML, keyword);
+
     if (keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
       validateWrongAnswer = verifyWordList(item, icon[i], showWord[i]);
     }
   });
 
-  if (keyword == "") {} else {
+  if (!keyword == "") {
     if (validateWrongAnswer == false) {
       inputs.className = "form__input wrong-answer";
     }
@@ -163,6 +167,18 @@ function submit() {
   }
 }
 
+function validateWord(wordList, keyword) {
+  var substringWordlist = wordList.substring(3);
+  var substringKeyword = keyword.substring(3);
+  var setMessageTips = document.querySelector(".section__message");
+
+  if (substringKeyword == substringWordlist) {
+    setMessageTips.innerHTML = "Você esta perto";
+  } else {
+    setMessageTips.innerHTML = "Errou";
+  }
+}
+
 function verifyWordList(words, icon, showWordSpan) {
   if (!wordsFound.includes(words)) {
     words.style.visibility = "visible";
@@ -171,7 +187,7 @@ function verifyWordList(words, icon, showWordSpan) {
     showWordSpan.innerHTML = words.innerHTML;
     counterGameScore++;
     scoreGame.innerHTML = counterGameScore;
-    wordsFound.push(words);
+    wordsFound.push(words.innerHTML.toLowerCase());
 
     if (counterGameScore == 20) {
       showModal();
@@ -302,7 +318,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49537" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49770" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
