@@ -14,7 +14,6 @@ var duration = 299;
 var count;
 var timer = duration, min, sec;
 var wordsFound = [];
-
 submitInput.addEventListener("click", submit);
 document.onkeyup=function(Key){
     if(Key.which == 13){
@@ -22,28 +21,15 @@ document.onkeyup=function(Key){
     }
 }
 function submit(){
-    subWordFound = false;
-    foundIsTrue  = false;
     var validateWrongAnswer = false;
     var keyword = document.getElementById("input__text").value;
     listItem.forEach(function(item,i){
-
         if(keyword.toUpperCase() == item.innerHTML.toUpperCase()){
-            validateWrongAnswer = verifyWordList(item, icon[i], showWord[i]);
-            foundIsTrue = true;
-            setMessageTips.style.display = "none"
+            validateWrongAnswer = verifyWordsFound(item, icon[i], showWord[i]);
+            setMessageTips.style.display = "none"   
         }
     })
-
-    if(foundIsTrue == false){    
-        listItem.forEach(function(item,i){
-            validateWord(item.innerHTML, keyword);
-        })
-    }
-    if(foundIsTrue == false && subWordFound == false){
-        setMessageTips.style.display = "block"
-        setMessageTips.innerHTML = "A palavra não existe";
-    }
+    validateFunctionIsClose();
     if(!keyword == ""){
         if(validateWrongAnswer == false){
             inputs.className = "form__input wrong-answer";
@@ -56,13 +42,32 @@ function submit(){
     }
 }
 
-function validateWord(wordList, keyword){
-    if(wordList.toUpperCase().includes(keyword.toUpperCase())){ 
-        subWordFound = true;
-        setMessageTips.innerHTML = "Você está perto"
+function validateFunctionIsClose(){
+    listItem.forEach(function(dado, i){
+        var typedWord = document.getElementById("input__text").value;
+             if(isClose(dado.innerHTML, typedWord)){
+                 setMessageTips.innerHTML = "Você está perto, continue!";   
+            }else{
+                setMessageTips.innerHTML = "Palavra não existente!"; 
+            }
+        })
     }
+    
+function isClose(list, typedWordVerify){      
+        var erro = 0;
+        var acerto = 0;
+        for(var i = 0; i<=typedWordVerify.length; i++){
+            if(list.substring(i).toUpperCase() == typedWordVerify.substring(i).toUpperCase()){
+                acerto++;
+            }
+            else{
+                erro++; 
+            } 
+        }   
+        return acerto > erro;
 }
-function verifyWordList(words, icon, showWordSpan){
+
+function verifyWordsFound(words, icon, showWordSpan){
     if(!wordsFound.includes(words)){
         words.style.visibility = "visible";
         words.parentElement.classList.remove("not-selected");
@@ -166,5 +171,3 @@ function setMessage(score){
         message.innerHTML = "Congratulations"
     }
 }
-
-
