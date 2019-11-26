@@ -126,16 +126,22 @@ var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
 var showWord = document.querySelectorAll(".item__answer .span_answer");
 var setMessageTips = document.querySelector(".section__message");
-var flag = true;
+var flagTime = true;
 var foundIsTrue = false;
 var subWordFound = false;
 var counterGameScore = 0;
-var duration = 299;
+var duration = 300;
 var count;
 var timer = duration,
     min,
     sec;
 var wordsFound = [];
+var wordList = [];
+var InputValue;
+var currentPercent;
+listItem.forEach(function (item, i) {
+  wordList.push(item.innerHTML);
+});
 submitInput.addEventListener("click", submit);
 
 document.onkeyup = function (Key) {
@@ -147,13 +153,12 @@ document.onkeyup = function (Key) {
 function submit() {
   var validateWrongAnswer = false;
   var keyword = document.getElementById("input__text").value;
+  InputValue = keyword;
   listItem.forEach(function (item, i) {
     if (keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
       validateWrongAnswer = verifyWordsFound(item, icon[i], showWord[i]);
-      setMessageTips.style.display = "none";
     }
   });
-  validateFunctionIsClose();
 
   if (!keyword == "") {
     if (validateWrongAnswer == false) {
@@ -166,44 +171,71 @@ function submit() {
     startTimer();
     CleanInput();
   }
+
+  wordsSimiliarity(InputValue, wordList);
 }
 
-function validateFunctionIsClose() {
-  listItem.forEach(function (dado, i) {
-    var typedWord = document.getElementById("input__text").value;
+var highestPercentage = 0;
 
-    if (isClose(dado.innerHTML, typedWord)) {
-      setMessageTips.innerHTML = "Você está perto, continue!";
+function wordsSimiliarity(typedWord, wordList) {
+  function verify(typedWord, wordListItem) {
+    var wordRight = 0;
+    var minLength;
+
+    if (typedWord.length > wordListItem.length) {
+      minLength = wordListItem.length;
     } else {
-      setMessageTips.innerHTML = "Palavra não existente!";
+      minLength = typedWord.length;
     }
-  });
-}
 
-function isClose(list, typedWordVerify) {
-  var erro = 0;
-  var acerto = 0;
-
-  for (var i = 0; i <= typedWordVerify.length; i++) {
-    if (list.substring(i).toUpperCase() == typedWordVerify.substring(i).toUpperCase()) {
-      acerto++;
+    if (typedWord.keyword < wordListItem.length) {
+      maxLength = wordListItem.length;
     } else {
-      erro++;
+      maxLength = typedWord.length;
+    }
+
+    for (var i = 0; i < minLength; i++) {
+      if (typedWord[i] == wordListItem[i]) {
+        wordRight++;
+      }
+    }
+
+    var percent = wordRight / maxLength * 100;
+
+    if (percent > highestPercentage) {
+      highestPercentage = percent;
+      console.log("Nova Porcentagems");
+      console.log(highestPercentage);
+    }
+
+    setMessageTips.style.display = "block";
+
+    if (highestPercentage == 100) {
+      setMessageTips.innerHTML = "Parabens Voce acertou";
+    } else if (highestPercentage > 70 && highestPercentage < 95) {
+      setMessageTips.innerHTML = "Voce esta perto de acertar";
+    } else if (highestPercentage > 50 && highestPercentage < 70) {
+      setMessageTips.innerHTML = "Quase la";
+    } else {
+      setMessageTips.innerHTML = "Errou";
     }
   }
 
-  return acerto > erro;
+  wordList.forEach(function (wordListItem) {
+    verify(typedWord.toUpperCase(), wordListItem.toUpperCase());
+  });
+  highestPercentage = 0;
 }
 
 function verifyWordsFound(words, icon, showWordSpan) {
-  if (!wordsFound.includes(words)) {
+  if (!wordsFound.includes(words.innerHTML)) {
     words.style.visibility = "visible";
     words.parentElement.classList.remove("not-selected");
     icon.style.visibility = "visible";
     showWordSpan.innerHTML = words.innerHTML;
     counterGameScore++;
     scoreGame.innerHTML = counterGameScore;
-    wordsFound.push(words.innerHTML.toLowerCase());
+    wordsFound.push(words.innerHTML);
 
     if (counterGameScore == 20) {
       showModal();
@@ -217,7 +249,7 @@ function verifyWordsFound(words, icon, showWordSpan) {
 }
 
 function startTimer() {
-  if (flag == true) {
+  if (flagTime == true) {
     var counter = document.querySelector(".footer__timer-text");
     count = setInterval(function () {
       counter.innerHTML = allGameTime(timer);
@@ -229,7 +261,7 @@ function startTimer() {
         showModal();
       }
     }, 1000);
-    flag = false;
+    flagTime = false;
   }
 }
 
@@ -241,7 +273,7 @@ function timePlayer(timer) {
 function allGameTime(timer) {
   min = parseInt(timer / 60);
   sec = parseInt(timer % 60);
-  return timePlayed = "".concat(min, ":").concat(sec);
+  return timePlayed = "".concat(("0" + min).slice(-2), ":").concat(("0" + sec).slice(-2));
 } //Tooltip Functions
 
 
@@ -299,7 +331,7 @@ function setMessage(score) {
   } else if (score > 5 && score <= 10) {
     message.innerHTML = "You are getting better, try again.";
   } else if (score > 10 && score <= 15) {
-    message.innerHTML = "You are near the victory";
+    message.innerHTML = "You are near to the victory";
   } else if (score > 15) {
     message.innerHTML = "Congratulations on getting all the keywords right";
   } else {
@@ -334,7 +366,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49395" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49490" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
