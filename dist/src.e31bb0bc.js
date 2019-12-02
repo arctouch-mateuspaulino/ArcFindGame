@@ -204,8 +204,7 @@ function wordsSimiliarity(typedWord, wordList) {
 
     if (percent > highestPercentage) {
       highestPercentage = percent;
-      console.log("Nova Porcentagems");
-      console.log(highestPercentage);
+      console.log("Nova Porcentagem: " + highestPercentage);
     }
 
     setMessageTips.style.display = "block";
@@ -321,6 +320,13 @@ function closeModal() {
   window.location.replace('index.html');
 }
 
+var resetButton = document.querySelector(".footer__button");
+resetButton.addEventListener("click", reset);
+
+function reset() {
+  window.location.replace('index.html');
+}
+
 function CleanInput() {
   var keyword = document.getElementById("input__text").value = "";
 }
@@ -366,7 +372,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49490" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

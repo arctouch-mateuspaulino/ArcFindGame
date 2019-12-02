@@ -163,7 +163,10 @@ html, body {
 }
 .section__game .game__section {
   border-bottom: 1px solid white;
+  margin: 10px 0px;
   padding: 0px 0px 20px 0px;
+  height: 400px;
+  overflow: auto;
 }
 .section__game .game__section .list__column {
   width: 100%;
@@ -248,20 +251,6 @@ html, body {
   text-decoration: underline;
 }
 
-.p__tooltip:before {
-  content: " ";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  transform: rotate(45deg);
-}
-
 .footer {
   width: 100%;
   height: auto;
@@ -269,12 +258,29 @@ html, body {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  align-items: center;
 }
 .footer .footer__score-game, .footer .footer__timer {
   display: flex;
   font-family: "Roboto", sans-serif;
   color: white;
   font-weight: 1000;
+}
+.footer .footer__reset-button {
+  height: 100%;
+}
+.footer .footer__reset-button .footer__button {
+  width: 120px;
+  background: #fd9526;
+  height: 30px;
+  border: 2px solid white;
+  color: white;
+  border-radius: 15px;
+  outline: none;
+  text-decoration: none;
+}
+.footer .footer__button:hover {
+  background: #ff8402;
 }
 
 @keyframes wrong-answer {
@@ -312,7 +318,7 @@ html, body {
   background: rgba(0, 0, 0, 0.3);
 }
 .modal__endgame .modal__container {
-  width: 500px;
+  width: 360;
   height: 150px;
   border: 2px solid white;
   background: linear-gradient(to top, #ff8402, #ff9b31);
@@ -385,6 +391,8 @@ html, body {
     grid-template-columns: auto auto;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+    height: auto;
+    overflow: visible;
   }
 
   .footer .footer__score-game {
@@ -394,6 +402,44 @@ html, body {
   .footer .footer__timer {
     padding: 15px;
     font-size: 25px;
+  }
+  .footer .footer__reset-button .footer__button {
+    width: 150px;
+  }
+
+  .p__tooltip {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    bottom: 50px;
+    position: absolute;
+    background: white;
+    display: none;
+    left: 0;
+    right: 0;
+    animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    font-family: Arial, Helvetica;
+  }
+  .p__tooltip .span_answer {
+    text-decoration: underline;
+  }
+
+  .p__tooltip:before {
+    content: " ";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    transform: rotate(45deg);
   }
 }
 @media (min-width: 1200px) {
@@ -446,6 +492,9 @@ html, body {
   .footer {
     padding-left: 100px;
     padding-right: 100px;
+  }
+  .footer .footer__reset-button .footer__button {
+    width: 170px;
   }
 }
 

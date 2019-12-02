@@ -102,25 +102,26 @@ $desktop-breakpoint: 768px;
     height: auto;
     margin-top: 15px;
     padding: 5px;
-
-        .section__message{
-            text-align: center;
-            font-family: Arial, Helvetica;
-            color:white;
-            margin-bottom: 20px;
-            display: none;
-        }        
-        .section__text--tip{
-            text-align: start;
-            font-family: Arial, Helvetica;
-            color:white;
-            padding: 0px 10px;
-            font-size: 20px;
-        }
-        .game__section{
-            border-bottom: 1px solid white;
-            padding: 0px 0px 20px 0px;
-
+    .section__message{
+        text-align: center;
+        font-family: Arial, Helvetica;
+        color:white;
+        margin-bottom: 20px;
+        display: none;
+    }        
+    .section__text--tip{
+        text-align: start;
+        font-family: Arial, Helvetica;
+        color:white;
+        padding: 0px 10px;
+        font-size: 20px;
+    }
+    .game__section{
+        border-bottom: 1px solid white;
+        margin: 10px 0px;
+        padding: 0px 0px 20px 0px;
+        height: 400px;
+        overflow: auto;
         .list__column{
             width: 100%;
             height: auto;
@@ -187,6 +188,7 @@ $desktop-breakpoint: 768px;
         opacity: 1;
     }
 }
+
 .p__tooltip{
     box-sizing: border-box;
     width: 100%;
@@ -208,21 +210,6 @@ $desktop-breakpoint: 768px;
             
         }
 }
-.p__tooltip:before{
-    content: " ";
-    position: absolute;
-    width: 20px;
-    height: 20px; 
-    background: #fff;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    text-align: center;
-    transform: rotate(45deg);
-}
-
-
 
 .footer{
     width: 100%;
@@ -231,12 +218,29 @@ $desktop-breakpoint: 768px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    align-items: center;
 
         .footer__score-game, .footer__timer{
             display: flex;
             font-family: 'Roboto', sans-serif;
             color: white;
             font-weight: 1000;
+        }
+        .footer__reset-button{
+            height: 100%;
+            .footer__button{
+                width: 120px;
+                background: #fd9526;
+                height: 30px;
+                border: 2px solid white;
+                color: white;
+                border-radius: 15px;
+                outline: none;
+                text-decoration: none;
+            }
+        }
+        .footer__button:hover{
+            background: #ff8402;
         }
 }
 
@@ -279,7 +283,7 @@ $desktop-breakpoint: 768px;
     background: rgb(0, 0, 0, 0.30);
     
         .modal__container{
-            width: 500px;
+            width: 360;
             height: 150px;
             border: 2px solid white;
             background: $bg-color;
@@ -312,9 +316,7 @@ $desktop-breakpoint: 768px;
                 font-family: 'Roboto', sans-serif;
                 font-weight: 1000;
                 color: white; 
-                
                 padding:  0 20px;
-                
             }
         }
 
@@ -360,6 +362,8 @@ $desktop-breakpoint: 768px;
                 grid-template-columns: auto auto;
                 grid-column-gap: 10px;
                 grid-row-gap: 10px; 
+                height: auto;
+                overflow: visible;
             }
     }
     
@@ -372,7 +376,46 @@ $desktop-breakpoint: 768px;
             padding: 15px;
             font-size: 25px;        
         }
+        .footer__reset-button{
+            .footer__button{
+                width: 150px;
+            }
+        }
     }
+.p__tooltip{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    bottom: 50px;
+    position: absolute;
+    background: white;
+    display: none;
+    left: 0;
+    right: 0;
+    animation: fadeOutTooltip .3s cubic-bezier(.36,.07,.19,.97) both ;
+    font-family: Arial, Helvetica;
+        .span_answer{
+            text-decoration: underline;
+            
+        }
+}
+.p__tooltip:before{
+    content: " ";
+    position: absolute;
+    width: 20px;
+    height: 20px; 
+    background: #fff;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    transform: rotate(45deg);
+}
 }
 
 
@@ -413,6 +456,8 @@ $desktop-breakpoint: 768px;
             .game__section{
                 display: flex;
                 width: 100%; 
+                // height: auto;
+                // overflow: none;
             }
             .list__column{
                 width: 25%;
@@ -425,5 +470,10 @@ $desktop-breakpoint: 768px;
             .footer{
                 padding-left: 100px;
                 padding-right: 100px; 
+                    .footer__reset-button{
+                        .footer__button{
+                            width: 170px;
+                        }
+                    }
             }
 }

@@ -77,8 +77,7 @@ function wordsSimiliarity(typedWord, wordList){
         var percent = (wordRight / maxLength) * 100;
         if(percent > highestPercentage){
             highestPercentage = percent;
-            console.log("Nova Porcentagems")
-            console.log(highestPercentage)
+            console.log("Nova Porcentagem: "+highestPercentage)
         }
         setMessageTips.style.display = "block"
         if(highestPercentage == 100){
@@ -181,6 +180,11 @@ iconCloseModal.addEventListener("click", closeModal);
 function closeModal(){
     var modalElement = document.querySelector(".modal__endgame");
     modalElement.style.display = "none";
+    window.location.replace('index.html');
+}
+var resetButton = document.querySelector(".footer__button");
+resetButton.addEventListener("click", reset)
+function reset(){
     window.location.replace('index.html');
 }
 
