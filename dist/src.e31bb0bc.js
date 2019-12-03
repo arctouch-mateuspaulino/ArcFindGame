@@ -226,10 +226,14 @@ function wordsSimiliarity(typedWord, wordList) {
   highestPercentage = 0;
 }
 
+var gameSection = document.querySelector(".game__section");
+
 function verifyWordsFound(words, icon, showWordSpan) {
   if (!wordsFound.includes(words.innerHTML)) {
     words.style.visibility = "visible";
     words.parentElement.classList.remove("not-selected");
+    position = words.getBoundingClientRect();
+    gameSection.scrollTo(0, position.top);
     icon.style.visibility = "visible";
     showWordSpan.innerHTML = words.innerHTML;
     counterGameScore++;
@@ -372,7 +376,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49606" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
