@@ -100,9 +100,11 @@ function verifyWordsFound(words, icon, showWordSpan){
     if(!wordsFound.includes(words.innerHTML)){
         words.style.visibility = "visible";
         words.parentElement.classList.remove("not-selected");
+        parentElementWOrds = words.parentElement;
+        console.log(parentElementWOrds)
 
 
-        position = words.getBoundingClientRect();
+        position = parentElementWOrds.parentElement.getBoundingClientRect();
         gameSection.scrollTo(0, position.top);
 
         icon.style.visibility = "visible";
@@ -149,7 +151,7 @@ function allGameTime(timer){
 //Tooltip Functions
 var liItem = document.querySelectorAll(".item__answer");
 function showTooltip(){
-    this.querySelector(".p__tooltip").style.display = "inline-block";
+    this.querySelector(".p__tooltip").style.display = "inline-table";
 }    
 liItem.forEach(function(d,i){
     liItem[i].addEventListener("mouseover", showTooltip);
@@ -191,7 +193,7 @@ function closeModal(){
 var resetButton = document.querySelector(".footer__button");
 resetButton.addEventListener("click", reset)
 function reset(){
-    window.location.replace('index.html');
+     window.location.replace('index.html');
 }
 
 function CleanInput(){

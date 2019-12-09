@@ -232,7 +232,9 @@ function verifyWordsFound(words, icon, showWordSpan) {
   if (!wordsFound.includes(words.innerHTML)) {
     words.style.visibility = "visible";
     words.parentElement.classList.remove("not-selected");
-    position = words.getBoundingClientRect();
+    parentElementWOrds = words.parentElement;
+    console.log(parentElementWOrds);
+    position = parentElementWOrds.parentElement.getBoundingClientRect();
     gameSection.scrollTo(0, position.top);
     icon.style.visibility = "visible";
     showWordSpan.innerHTML = words.innerHTML;
@@ -283,7 +285,7 @@ function allGameTime(timer) {
 var liItem = document.querySelectorAll(".item__answer");
 
 function showTooltip() {
-  this.querySelector(".p__tooltip").style.display = "inline-block";
+  this.querySelector(".p__tooltip").style.display = "inline-table";
 }
 
 liItem.forEach(function (d, i) {
