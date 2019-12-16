@@ -188,7 +188,7 @@ $desktop-breakpoint: 768px;
                 display: none;         
                 left: 0;
                 right: 0;
-                animation: fadeOutTooltip .3s cubic-bezier(.36,.07,.19,.97) both ;
+                //animation: fadeOutTooltip .3s cubic-bezier(.36,.07,.19,.97) both ;
                 font-family: Arial, Helvetica;
                 .span_answer{
                     text-decoration: underline;
@@ -234,11 +234,6 @@ $desktop-breakpoint: 768px;
                 z-index: 0;
                 width: 20px;
                 top: -100%;
-                height: 20px; 
-                background: #fff;
-                margin: auto;
-                text-align: center;
-                transform: rotate(45deg);
             }
 
     }
@@ -401,6 +396,10 @@ $desktop-breakpoint: 768px;
                 height: auto;
                 overflow: visible;
             }
+            .item__answer{
+                width: 339px;
+            }
+
     }
     
     .footer{
@@ -418,46 +417,24 @@ $desktop-breakpoint: 768px;
             }
         }
      }
-
-    // .list__column:nth-child(-n+2){
-//     .item__answer:nth-child(-n + 3){
-//             .p__tooltip{
-//                 z-index: 10000;  
-//                 margin-top: 20px;   
-//                 top: 100%;
-//                 left: 0;
-//             }
-//             .p__tooltip:before{
-//                 content: " ";
-//                 position: absolute;
-//                 z-index: 0;
-//                 width: 20px;
-//                 top: -100%;
-//                 height: 20px; 
-//                 background: #fff;
-//                 margin: auto;
-//                 text-align: center;
-//                 transform: rotate(45deg);
-//             }
-
-//     }
-// }
-.list__column:nth-child(n){
-
-    .item__answer:nth-child(n){
-        .p__tooltip{
-            z-index: 10000;
-            margin-top: 0;  
-            top: 0;
-        }
-        .p__tooltip::before{
-                z-index: 1000;
-                top: 90%;
-                
-
+     .list__column:nth-child(-n+2){
+        .item__answer:nth-child(-n + 3){
+                .p__tooltip{
+                    z-index: 10000;  
+                    margin-top: 0;   
+                    top: inherit;
+                    left: 0;
+                    bottom:50px;
+                    position: absolute;
+                    right: 0;
+                }
+            .p__tooltip::before{
+                    z-index: 1000;
+                    top: inherit
+            }
+    
         }
     }
-}
 }
 
 
@@ -518,45 +495,6 @@ $desktop-breakpoint: 768px;
                             width: 170px;
                         }
                     }
-            }
-
-
-
-            .list__column:nth-child(n){
-                .item__answer:nth-child(n){
-                   .p__tooltip{
-                       box-sizing: border-box;
-                       width: 100%;
-                       height: auto;
-                       max-height: 300px;
-                       padding: 20px;
-                       text-align: center;
-                       border-radius: 15px;
-                       bottom: 50px;
-                       position: absolute;
-                       background: white;
-                       display: none;         
-                       left: 0;
-                       right: 0;
-                       animation: fadeOutTooltip .3s cubic-bezier(.36,.07,.19,.97) both ;
-                       font-family: Arial, Helvetica;
-                       .span_answer{
-                           text-decoration: underline;
-                           
-                           }
-                   }
-                   .p__tooltip:before{
-                       content: " ";
-                       position: absolute;
-                       width: 20px;
-                       height: 20px;
-                       left: 20px;
-                       background: #fff;
-                       bottom: -5px;
-                       margin: auto;
-                       text-align: center;
-                       transform: rotate(45deg);
-                   }
                 }
-            }
-}
+        }
+    

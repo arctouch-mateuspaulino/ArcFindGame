@@ -233,7 +233,6 @@ html, body {
   display: none;
   left: 0;
   right: 0;
-  animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   font-family: Arial, Helvetica;
 }
 .section__game .game__section .list__column .p__tooltip .span_answer {
@@ -275,11 +274,6 @@ html, body {
   z-index: 0;
   width: 20px;
   top: -100%;
-  height: 20px;
-  background: #fff;
-  margin: auto;
-  text-align: center;
-  transform: rotate(45deg);
 }
 
 .footer {
@@ -426,6 +420,9 @@ html, body {
     height: auto;
     overflow: visible;
   }
+  .section__game .item__answer {
+    width: 339px;
+  }
 
   .footer .footer__score-game {
     padding: 15px;
@@ -439,14 +436,18 @@ html, body {
     width: 150px;
   }
 
-  .list__column:nth-child(n) .item__answer:nth-child(n) .p__tooltip {
+  .list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip {
     z-index: 10000;
     margin-top: 0;
-    top: 0;
+    top: inherit;
+    left: 0;
+    bottom: 50px;
+    position: absolute;
+    right: 0;
   }
-  .list__column:nth-child(n) .item__answer:nth-child(n) .p__tooltip::before {
+  .list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip::before {
     z-index: 1000;
-    top: 90%;
+    top: inherit;
   }
 }
 @media (min-width: 1200px) {
@@ -502,39 +503,6 @@ html, body {
   }
   .footer .footer__reset-button .footer__button {
     width: 170px;
-  }
-
-  .list__column:nth-child(n) .item__answer:nth-child(n) .p__tooltip {
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    padding: 20px;
-    text-align: center;
-    border-radius: 15px;
-    bottom: 50px;
-    position: absolute;
-    background: white;
-    display: none;
-    left: 0;
-    right: 0;
-    animation: fadeOutTooltip 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    font-family: Arial, Helvetica;
-  }
-  .list__column:nth-child(n) .item__answer:nth-child(n) .p__tooltip .span_answer {
-    text-decoration: underline;
-  }
-  .list__column:nth-child(n) .item__answer:nth-child(n) .p__tooltip:before {
-    content: " ";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 20px;
-    background: #fff;
-    bottom: -5px;
-    margin: auto;
-    text-align: center;
-    transform: rotate(45deg);
   }
 }
 
