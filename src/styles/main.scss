@@ -220,7 +220,7 @@ $desktop-breakpoint: 768px;
         opacity: 1;
     }
 }
-.list__column:nth-child(-n+2){
+.list__column:nth-child(-n+4){
     .item__answer:nth-child(-n + 3){
             .p__tooltip{
                 z-index: 10000;  
@@ -417,7 +417,7 @@ $desktop-breakpoint: 768px;
             }
         }
      }
-     .list__column:nth-child(-n+2){
+     .list__column:nth-child(-n+4){
         .item__answer:nth-child(-n + 3){
                 .p__tooltip{
                     z-index: 10000;  

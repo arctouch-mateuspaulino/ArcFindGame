@@ -262,13 +262,13 @@ html, body {
     opacity: 1;
   }
 }
-.list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip {
+.list__column:nth-child(-n+4) .item__answer:nth-child(-n+3) .p__tooltip {
   z-index: 10000;
   margin-top: 20px;
   top: 100%;
   left: 0;
 }
-.list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip:before {
+.list__column:nth-child(-n+4) .item__answer:nth-child(-n+3) .p__tooltip:before {
   content: " ";
   position: absolute;
   z-index: 0;
@@ -436,7 +436,7 @@ html, body {
     width: 150px;
   }
 
-  .list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip {
+  .list__column:nth-child(-n+4) .item__answer:nth-child(-n+3) .p__tooltip {
     z-index: 10000;
     margin-top: 0;
     top: inherit;
@@ -445,7 +445,7 @@ html, body {
     position: absolute;
     right: 0;
   }
-  .list__column:nth-child(-n+2) .item__answer:nth-child(-n+3) .p__tooltip::before {
+  .list__column:nth-child(-n+4) .item__answer:nth-child(-n+3) .p__tooltip::before {
     z-index: 1000;
     top: inherit;
   }

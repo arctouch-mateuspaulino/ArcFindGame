@@ -1,6 +1,6 @@
 var submitInput = document.querySelector(".input__submit");
 var listItem = document.querySelectorAll(".list__column .item__answer .p__text");
-var icon = document.querySelectorAll(".list__column .item__answer .fa-check");
+var icon = document.querySelectorAll(".list__column .item__answer i");
 var message = document.querySelector(".modal__information h4");
 var inputs = document.querySelector(".form__input");
 var scoreGame = document.querySelector(".footer__score-game span");
@@ -17,97 +17,84 @@ var wordsFound = [];
 var wordList = []
 var InputValue;
 var currentPercent;
-
+var validateWordsSimiliarity = false;
 listItem.forEach(function(item, i){
     wordList.push(item.innerHTML)
 })
-submitInput.addEventListener("click", submit);
 
+var validateWrongAnswer = false;
 document.onkeyup=function(Key){
     if(Key.which == 13){
         submit();
     }
 }
-function submit(){  
-    var validateWrongAnswer = false;
+var isTrue = false;
+submitInput.addEventListener("click", submit);
+function submit() {
     var keyword = document.getElementById("input__text").value;
-    InputValue = keyword;
-    
-    listItem.forEach(function(item,i){
-        if(keyword.toUpperCase() == item.innerHTML.toUpperCase()){
-            validateWrongAnswer = verifyWordsFound(item, icon[i], showWord[i]);
+    wordsSimiliarity(keyword, wordList)
+    listItem.forEach(function (item, i) {
+        if(keyword.toUpperCase() == item.innerHTML.toUpperCase()) {
+            validateWrongAnswer = verifyWordsFound(item, showWord[i], icon[i]);
         }
     })
-    if(!keyword == ""){
-        if(validateWrongAnswer == false){
+    if (!keyword == "") {
+        if (validateWrongAnswer == false) {
             inputs.className = "form__input wrong-answer";
-        }  
-        setTimeout(function(){
+        }
+        setTimeout(function () {
             inputs.className = "form__input";
         }, 1000);
         startTimer();
-        CleanInput()   
+        CleanInput()
     }
-    wordsSimiliarity(InputValue, wordList)
 }
 var highestPercentage = 0;
 function wordsSimiliarity(typedWord, wordList){
     function verify(typedWord, wordListItem){
         var wordRight = 0;
         var minLength;
-        
-        if(typedWord.length > wordListItem.length){
-            minLength = wordListItem.length
-        }else{
-            minLength = typedWord.length
-        }
-
-        if(typedWord.keyword < wordListItem.length){
-            maxLength = wordListItem.length;
-        }else{
-            maxLength = typedWord.length;
-        }
+        (typedWord.length > wordListItem.length) ?
+            minLength = wordListItem.length : minLength = typedWord.length;
+        (typedWord.length < wordListItem.length) ?
+            maxLength = wordListItem.length : maxLength = typedWord.length; 
 
         for(var i = 0; i < minLength; i++){
             if(typedWord[i] == wordListItem[i]){
                 wordRight++;
             }
         }
-        
         var percent = (wordRight / maxLength) * 100;
         if(percent > highestPercentage){
             highestPercentage = percent;
-            console.log("Nova Porcentagem: "+highestPercentage)
         }
         setMessageTips.style.display = "block"
         if(highestPercentage == 100){
-            setMessageTips.innerHTML = "Parabens Voce acertou";
+            setMessageTips.innerHTML = "Congratulations! you're right";
+            return isTrue = true;
         }else if(highestPercentage > 70 && highestPercentage < 95){
-            setMessageTips.innerHTML = "Voce esta perto de acertar"
+            setMessageTips.innerHTML = "You're close to getting it right"
+            return isTrue = false;
         }else if(highestPercentage > 50 && highestPercentage < 70){
-            setMessageTips.innerHTML = "Quase la"
+            setMessageTips.innerHTML = "Almost there"
+            return isTrue = false;
         }else{
-            setMessageTips.innerHTML = "Errou"
+            setMessageTips.innerHTML = "You missed"
+            return isTrue = false;
         }
     }
     wordList.forEach(wordListItem => {
-        verify(typedWord.toUpperCase(), wordListItem.toUpperCase());
-      });
-      highestPercentage = 0;
+        verify(typedWord.toUpperCase(), wordListItem.toUpperCase()); 
+    });
+    highestPercentage = 0;
 }
-var gameSection = document.querySelector(".game__section");
-function verifyWordsFound(words, icon, showWordSpan){
+
+function verifyWordsFound(words, showWordSpan, i){
     if(!wordsFound.includes(words.innerHTML)){
         words.style.visibility = "visible";
         words.parentElement.classList.remove("not-selected");
-        parentElementWOrds = words.parentElement;
-        console.log(parentElementWOrds)
-
-
-        position = parentElementWOrds.parentElement.getBoundingClientRect();
-        gameSection.scrollTo(0, position.top);
-
-        icon.style.visibility = "visible";
+        getPosition(words.parentElement);
+        i.style.visibility = "visible";
         showWordSpan.innerHTML = words.innerHTML;
         counterGameScore++;
         scoreGame.innerHTML = counterGameScore;
@@ -118,8 +105,13 @@ function verifyWordsFound(words, icon, showWordSpan){
         }
         return true
     }
-
     return false
+}
+
+var gameSection = document.querySelector(".game__section");
+function getPosition(wordParentElement){
+    positionWord = wordParentElement.parentElement.getBoundingClientRect();
+    gameSection.scrollTo(0, positionWord.top);
 }
 
 function startTimer(){
@@ -149,67 +141,50 @@ function allGameTime(timer){
 }
 
 //Tooltip Functions
-var liItem = document.querySelectorAll(".item__answer");
-function showTooltip(){
-    this.querySelector(".p__tooltip").style.display = "inline-table";
-}    
+var liItem = document.querySelectorAll(".item__answer");  
 liItem.forEach(function(d,i){
-    liItem[i].addEventListener("mouseover", showTooltip);
+    d.addEventListener("mouseover", function(){
+        this.querySelector(".p__tooltip").style.display = "inline-table";
+    });
 })
 
-
-function hiddenTooltip(){
-    this.querySelector(".p__tooltip").style.display = "none";
-}
 liItem.forEach(function(d,i){
-    liItem[i].addEventListener("mouseout", hiddenTooltip);
+    d.addEventListener("mouseout", function(){
+        this.querySelector(".p__tooltip").style.display = "none";
+    });
 })
 
 
 //Modal Functions
 function showModal(){
-    var modalElement = document.querySelector(".modal__endgame");
-    var score = document.querySelector(".span__score");
-    var time = document.querySelector(".p__time");
-    var scoreTime = document.querySelector(".span__time");
+    const modalElement = document.querySelector(".modal__endgame");
+    const score = document.querySelector(".span__score");
+    const time = document.querySelector(".p__time");
+    const scoreTime = document.querySelector(".span__time");
     modalElement.style.display = "flex";
-    if(timer < 0){
-        time.innerHTML = "timesOut";
-    }else{ 
-        scoreTime.innerHTML = timePlayed;
-    } 
+    (timer < 0) ? time.innerHTML = "Time's out" : scoreTime.innerHTML = timePlayed;
     score.innerHTML = counterGameScore;
     setMessage(counterGameScore);
 }
 
-var iconCloseModal = document.querySelector(".fa-times");
-iconCloseModal.addEventListener("click", closeModal);
-
-function closeModal(){
-    var modalElement = document.querySelector(".modal__endgame");
+let iconCloseModal = document.querySelector(".fa-times");
+iconCloseModal.addEventListener("click", function(){
+    const modalElement = document.querySelector(".modal__endgame");
     modalElement.style.display = "none";
     window.location.replace('index.html');
-}
-var resetButton = document.querySelector(".footer__button");
-resetButton.addEventListener("click", reset)
-function reset(){
-     window.location.replace('index.html');
-}
+ });
 
-function CleanInput(){
-    var keyword = document.getElementById("input__text").value = "";
-}
+let resetButton = document.querySelector(".footer__button");
+resetButton.addEventListener("click", function(){
+    window.location.replace('index.html');
+})
+
+let CleanInput = ()  => document.getElementById("input__text").value = "";
 
 function setMessage(score){
-    if(score <= 5){
-        message.innerHTML = "You can do better";
-    }else if(score > 5 && score <= 10){
-        message.innerHTML = "You are getting better, try again.";
-    }else if(score > 10 && score <= 15){
-        message.innerHTML = "You are near to the victory";
-    }else if(score > 15){
-        message.innerHTML = "Congratulations on getting all the keywords right";
-    }else{
-        message.innerHTML = "Congratulations"
-    }
+    (score <=5)               ? message.innerHTML = "You can do better!": 
+    (score > 5 && score <=10) ? message.innerHTML = "You're getting better, try again." :
+    (score >10 && score <=15) ? message.innerHTML = "You're near to the victory." :
+    (score < 15)              ? message.innerHTML = "Congratulations on getting all the keywords right" :
+                                message.innerHTML = "Congratulations";
 }
