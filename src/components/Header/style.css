@@ -1,0 +1,16 @@
+.header h1{
+    text-align: center;
+    margin-top: 20px; 
+    font-family: 'Open Sans', sans-serif;
+    color: #54555a;
+}
+.header__logo{
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+img{
+    width: 140px;
+}

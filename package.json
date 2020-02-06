@@ -1,27 +1,36 @@
 {
-  "name": "ArcFindGame",
-  "version": "1.0.0",
-  "description": "",
-  "main": "client/index.js",
-  "scripts": {
-    "start": "parcel -p 8000 watch client/register.html",
-    "build": "parcel build client/register.html --public-url ./"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arctouch-mateuspaulino/ArcFindGame.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/arctouch-mateuspaulino/ArcFindGame/blob/master/README.md",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.22.12"
-  },
+  "name": "arcfind-client",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.8.9"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "modules": "^0.4.0",
+    "node": "^13.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
