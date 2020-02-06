@@ -155,6 +155,18 @@ var isTrue = false;
 submitInput.addEventListener("click", submit);
 
 function submit() {
+  // fetch("http://localhost:3000/arcfind/register", {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //         "name": "Wesley",
+  //         "email": "wesley@gmail.com",
+  //         "ocupation": "fullstack",
+  //         "password": "123456"
+  //     }),
+  //     headers: new Headers({
+  //         'Content-Type': 'application/json'
+  //     })
+  // }).then(response => response.json())
   var keyword = document.getElementById("input__text").value;
   wordsSimiliarity(keyword, wordList);
   listItem.forEach(function (item, i) {
@@ -245,8 +257,9 @@ function verifyWordsFound(words, showWordSpan, i) {
 var gameSection = document.querySelector(".game__section");
 
 function getPosition(wordParentElement) {
-  positionWord = wordParentElement.parentElement.getBoundingClientRect();
-  gameSection.scrollTo(0, positionWord.top);
+  positionWord = wordParentElement.parentElement.getBoundingClientRect(); //gameSection.scrollTo(0, positionWord.top);
+
+  gameSection.scrollBy(50, positionWord.top);
 }
 
 function startTimer() {
@@ -347,7 +360,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49512" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49700" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -378,8 +391,9 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         assetsToAccept.forEach(function (v) {
           hmrAcceptRun(v[0], v[1]);
         });
-      } else {
-        window.location.reload();
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
       }
     }
 
