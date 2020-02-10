@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './style.css';
+import axios from 'axios';
 
 export default class Register extends Component{
     constructor(props){
         super(props);
             this.state= {
-                name: this.props.nome,
-                email: this.props.email,
-                ocupation: this.props.ocupation,
-                password: this.props.password,
-                confirmPassword: this.props.confirmPassword
+                name: '',
+                email: '',
+                ocupation: '',
+                password: '',
+                confirmPassword: ''
             }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,18 +26,32 @@ export default class Register extends Component{
     }
     handleSubmit(e){
         e.preventDefault();
+        if(!this.state.name.length < 1 &&
+           !this.state.email.length < 1 &&
+           !this.state.ocupation.length < 1 &&
+           !this.state.password.length < 8 &&
+           !this.state.confirmPassword.length < 8){
+               if(this.state.password === this.state.confirmPassword){
+                   axios.post("http://localhost:4001/arcfind/register", this.state);
+               }else{
+                   console.log("Senhas incorretas");
+               }    
+           }else{
+               console.log("Preencha todos os campos")
+           }
     }
+
     render(){
-        const {nome, email, ocupation, password, confirmPassword} = this.state;
+        const {name, email, ocupation, password, confirmPassword} = this.state;
     return(
     <section className="section__register">
             <div className="main-register">
-                <form method="POST" className="form_register" onSubmit={this.handleSubmit}>
+                <form method="POST" className="form__register" onSubmit={this.handleSubmit}>
                     <div className="container-input">
-                        <input type="text" placeholder="Name" name="name" value={nome} onChange={this.handleInputChange}></input>
+                        <input type="text" placeholder="Name" name="name" value={name} onChange={this.handleInputChange}></input>
                     </div>
                     <div className="container-input">
-                        <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleInputChange}></input>
+                        <input type="text" placeholder="Email" name="email" value={email} onChange={this.handleInputChange}></input>
                     </div>
                     <div className="container-input">
                         <input type="text" placeholder="Ocupation"  name="ocupation"value={ocupation} onChange={this.handleInputChange}></input>
@@ -47,8 +62,8 @@ export default class Register extends Component{
                     <div className="container-input">
                         <input type="password" placeholder="Confirm password" name="confirmPassword" value={confirmPassword} onChange={this.handleInputChange}></input>
                     </div>
-                    <div className="container-button">
-                        <button value="Send">SEND</button>
+                    <div className="container-input-send">
+                        <input type="submit" value="SEND"></input>
                     </div>
                 </form> 
             </div>
