@@ -1,13 +1,12 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Register from './components/Register/Section'
+import Routes from './routes';
 import '../src/style.css'
-
 
 const App = () => (
   <div className="App">
     <Header />
-    <Register />
+    <Routes />
   </div>
 );
 

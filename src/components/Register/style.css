@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 .section__register{
     width: 100%;
     height: 100vh;
@@ -33,11 +35,22 @@
     color: #fff;
     background: #58595f;
     border-radius: 15px;
+    cursor: pointer;
 }
 .container-input-send input:hover{
     background: #48494e;
 }
-
+.section__inform{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    margin-top: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+.section__inform a{
+    color: black;
+}
 @media(min-width: 768px){
     .container-input, .container-input-send{
         margin: 25px 0;
@@ -53,6 +66,9 @@
         height: 65px;
         font-size: 20px;
         border-radius: 35px;
+    }
+    .section__inform {
+        font-size: 20px;
     }
 }
 @media(min-width: 1280px){
@@ -72,6 +88,10 @@
         width: 20%;
         height: 45px;
         border-radius: 30px;
+        font-size: 17px;
+    }
+    .section__inform {
+        margin-top: 10px;
         font-size: 17px;
     }
 }

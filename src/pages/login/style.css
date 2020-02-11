@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+.section__login{
+    width: 100%;
+    height: 100vh;
+    margin-top: 50px ;
+    padding: 0px 20px;
+}
+.section__title{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+    font-family: 'Work Sans', sans-serif;
+}
+.form__login{
+    width: 100%;
+    padding: 5px;
+}
+.input__Login, .input__submit{
+    text-align: center;
+    width: 100%;
+    height: 45px;
+    margin: 15px 0px;
+}
+.input__Login input{
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    text-decoration: none;
+    outline: none
+}
+.input__submit input{
+    margin-top: 10px;
+    width: 40%;
+    height: 35px;
+    border: none;
+    color: #fff;
+    background: #58595f;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.section__informs{
+    width: 100%;
+    color: #fff;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+.section__informs a{
+    line-height: 1.7;
+    color: black;
+}
+.section__informs p, a{
+    width: 100%;
+    text-align: center;
+}
+@media(min-width: 768px){
+    .section__informs {
+        font-size: 20px;
+    }
+}
+@media(min-width: 1280px){
+    .section__informs{
+        margin-top: 10px;
+        font-size: 17px;
+    }
+}

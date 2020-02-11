@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Register extends Component{
     constructor(props){
@@ -43,7 +44,12 @@ export default class Register extends Component{
 
     render(){
         const {name, email, ocupation, password, confirmPassword} = this.state;
+        // const login = [{
+        //     label : 'login',
+        //     command: () => this.props.history.push('/login')
+        // }]
     return(
+    
     <section className="section__register">
             <div className="main-register">
                 <form method="POST" className="form__register" onSubmit={this.handleSubmit}>
@@ -65,6 +71,9 @@ export default class Register extends Component{
                     <div className="container-input-send">
                         <input type="submit" value="SEND"></input>
                     </div>
+                    <section className="section__inform">
+                        <p>Already have an account? <Link to= "/Login">click here</Link ></p>
+                    </section>
                 </form> 
             </div>
     </section>
