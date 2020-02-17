@@ -44,10 +44,6 @@ export default class Register extends Component{
 
     render(){
         const {name, email, ocupation, password, confirmPassword} = this.state;
-        // const login = [{
-        //     label : 'login',
-        //     command: () => this.props.history.push('/login')
-        // }]
     return(
     
     <section className="section__register">
@@ -72,7 +68,7 @@ export default class Register extends Component{
                         <input type="submit" value="SEND"></input>
                     </div>
                     <section className="section__inform">
-                        <p>Already have an account? <Link to= "/Login">click here</Link ></p>
+                        <p>Already have an account? <Link to= "/">click here</Link ></p>
                     </section>
                 </form> 
             </div>
