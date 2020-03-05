@@ -25,6 +25,7 @@ export default class Login extends Component{
                 }).catch(err => console.log(' errr', err))
     }
 
+
    render(){
        if(this.state.redirectToHome)
         return <Redirect to={{ pathname: '/Home'}} />
@@ -42,7 +43,7 @@ export default class Login extends Component{
                         <input type="password" placeholder="password" name="password" value={this.state.password} onChange={(evt) => this.handleInputChange('password', evt.target.value)} ></input>
                     </div>
                     <div className="section__informs">
-                        <p>Forgot password? <a href="#">click here.</a></p>
+                        <p>Forgot password? <Link to="/ForgotPassword">click here.</Link></p>
                         <p>Doesn't have an account? <Link to= "/Register">click here</Link ></p>
                     </div>
                     <div className="container-input-send ">

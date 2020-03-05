@@ -34,6 +34,7 @@ export default class Register extends Component{
            !this.state.confirmPassword.length < 8){
                if(this.state.password === this.state.confirmPassword){
                    axios.post("http://localhost:4001/arcfind/register", this.state);
+                   axios.post('https://api.elasticemail.com/v2/email/send',)
                }else{
                    console.log("Senhas incorretas");
                }    

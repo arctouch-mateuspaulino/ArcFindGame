@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "elasticemail-webapiclient": "^2.0.13",
     "modules": "^0.4.0",
     "node": "^13.7.0",
     "react": "^16.12.0",
