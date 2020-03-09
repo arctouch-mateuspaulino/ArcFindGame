@@ -6,6 +6,7 @@ import Login from './pages/login/login';
 import Home from './pages/Home/Home';
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import Confirmation from './pages/ConfirmationAccount/Confirmation';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -36,6 +37,7 @@ const Routes = () => (
             <PrivateRoute path='/Home' component={Home}/>
             <Route path="/ResetPassword" component={ResetPassword}/>
             <Route path="/ForgotPassword" component={ForgotPassword}/>
+            <Route path="/Confirmation" component= {Confirmation} />
         </Switch>
     </BrowserRouter>
 );

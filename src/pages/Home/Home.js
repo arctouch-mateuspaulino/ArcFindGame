@@ -9,6 +9,7 @@ export default class Home extends Component{
         return(
         <section>
             <h1>Bem vindo</h1>
+            
             <Link to='/' value="Log out" onClick={logOut}>Log out</Link>
         </section> 
         )

@@ -20,13 +20,14 @@ export default class ResetPassword extends Component{
             {
                 email: this.state.email,
                 token: this.state.token,
-                password: this.state.password
+                password: this.state.password,
+                confirm_password: this.state.confirm_password
             });
             this.setState({redirectToLogin: true})
     }
    render(){
     if(this.state.redirectToLogin)
-    return <Redirect to={{ pathname: '/Login'}} />
+    return <Redirect to={{ pathname: '/'}} />
        return (
         <section className="section__login">
         <section className="section__title">
@@ -45,14 +46,14 @@ export default class ResetPassword extends Component{
                     value={this.state.password} onChange={(evt) => this.handleInputChange('password', evt.target.value)}  ></input>
                 </div>
                 <div className="container-input">
-                    <input type="password" placeholder="password" name="ConfirmPassword"
-                    value={this.state.password} onChange={(evt) => this.handleInputChange('password', evt.target.value)}  ></input>
+                    <input type="password" placeholder="Confirm password" name="Confirm_password"
+                    value={this.state.confirm_password} onChange={(evt) => this.handleInputChange('confirm_password', evt.target.value)}  ></input>
                 </div>
                 <div className="section__informs">
                     <p>Doesn't have an account? <Link to= "/Register">click here</Link ></p>
                 </div>
                 <div className="container-input-send ">
-                    <input type="submit" value="LOGIN"></input> 
+                    <input type="submit" value="Redefinir Senha"></input> 
                 </div>
             </form>
     </section>

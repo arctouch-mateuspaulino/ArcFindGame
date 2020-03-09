@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 
 export default class Register extends Component{
     constructor(props){
@@ -11,7 +11,8 @@ export default class Register extends Component{
                 email: '',
                 ocupation: '',
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                redirectToConfirmation: false
             }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +36,7 @@ export default class Register extends Component{
                if(this.state.password === this.state.confirmPassword){
                    axios.post("http://localhost:4001/arcfind/register", this.state);
                    axios.post('https://api.elasticemail.com/v2/email/send',)
+                   this.setState({redirectToConfirmation: true})
                }else{
                    console.log("Senhas incorretas");
                }    
@@ -45,6 +47,8 @@ export default class Register extends Component{
 
     render(){
         const {name, email, ocupation, password, confirmPassword} = this.state;
+        if(this.state.redirectToConfirmation)
+        return <Redirect to={{ pathname: '/Confirmation'}} />
     return(
     
     <section className="section__register">
