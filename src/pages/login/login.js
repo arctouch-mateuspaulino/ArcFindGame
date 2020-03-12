@@ -3,6 +3,7 @@ import './style.css';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { saveToken } from '../../components/Authenticated/auth';
+import { motion } from 'framer-motion';
 export default class Login extends Component{
     constructor(props){
         super(props);
@@ -20,18 +21,36 @@ export default class Login extends Component{
         e.stopPropagation();
             axios.post("http://localhost:4001/arcfind/login", { email: this.state.email, password: this.state.password })
                 .then(response => {
+                    console.log(response)
                     saveToken(response.data.token);
                     this.setState({redirectToHome: true})
                 }).catch(err => console.log(' errr', err))
     }
 
-
+    
    render(){
        if(this.state.redirectToHome)
         return <Redirect to={{ pathname: '/Home'}} />
 
+
+        const pageTransition ={
+            in:{
+                opacity:1,
+                x:0
+            },
+            out:{
+                opacity: 0,
+                x: "-5%"
+            }
+        }
        return (
-        <section className="section__login">
+        <motion.section className="section__login"
+            initial= "out"
+            transition={{ duration: 1.3}}
+            animate="in"
+            exit="out"
+            variants={pageTransition}
+        >
             <section className="section__title">
                     <h3>Login</h3>
             </section>
@@ -50,7 +69,7 @@ export default class Login extends Component{
                         <input type="submit" value="LOGIN"></input> 
                     </div>
                 </form>
-        </section>
+        </motion.section>
        )
    } 
 }

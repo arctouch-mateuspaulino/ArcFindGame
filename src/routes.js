@@ -8,6 +8,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Confirmation from './pages/ConfirmationAccount/Confirmation';
 
+import { AnimatePresence, motion} from 'framer-motion';
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         { ...rest}
@@ -21,24 +22,26 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 const Routes = () => (
     <BrowserRouter>
-        <Switch>
-            <Route exact path="/" 
-                render = { props => (
-                        isAuthenticated()? (
-                            <Home {... props}/>
-                            
-                    ):(
-                            <Login {... props}/>
-                    )
-
-                )}>
-            </Route>
-            <Route path="/Register" component={Register}/>
-            <PrivateRoute path='/Home' component={Home}/>
-            <Route path="/ResetPassword" component={ResetPassword}/>
-            <Route path="/ForgotPassword" component={ForgotPassword}/>
-            <Route path="/Confirmation" component= {Confirmation} />
-        </Switch>
+        <AnimatePresence>
+            <Switch>
+                    <Route exact path="/" 
+                        render = { props => (
+                            isAuthenticated()? (
+                                <Home {... props}/>
+                                
+                                ):(
+                                    <Login {... props}/>
+                                    )
+                                    
+                                    )}>
+                    </Route>
+                    <Route path="/Register" component={Register}/>
+                    <Route path="/ResetPassword" component={ResetPassword}/>
+                    <Route path="/ForgotPassword" component={ForgotPassword}/>
+                    <Route path="/Confirmation" component= {Confirmation} />
+                    <PrivateRoute path='/Home' component={Home}/>
+            </Switch>
+        </AnimatePresence>
     </BrowserRouter>
 );
 export default Routes;

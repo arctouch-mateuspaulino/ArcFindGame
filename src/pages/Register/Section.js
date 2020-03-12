@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
 import { Link, Redirect} from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default class Register extends Component{
     constructor(props){
@@ -49,36 +50,55 @@ export default class Register extends Component{
         const {name, email, ocupation, password, confirmPassword} = this.state;
         if(this.state.redirectToConfirmation)
         return <Redirect to={{ pathname: '/Confirmation'}} />
-    return(
-    
-    <section className="section__register">
-            <div className="main-register">
-                <form method="POST" className="form__register" onSubmit={this.handleSubmit}>
-                    <div className="container-input">
-                        <input type="text" placeholder="Name" name="name" value={name} onChange={this.handleInputChange}></input>
+
+        const pageTransition ={
+            in:{
+                delay: 3,
+                opacity:1,
+                x:0
+            },
+            out:{
+                opacity: 0,
+                x: "-5%"
+            }    
+            
+        }
+        return(
+
+            <motion.section className="section__register"
+                initial= "out"
+                transition={{ duration: 1.8}}
+                animate="in"
+                exit="out"
+                variants={pageTransition}
+            >
+                    <div className="main-register">
+                        <form method="POST" className="form__register" onSubmit={this.handleSubmit}>
+                            <div className="container-input">
+                                <input type="text" placeholder="Name" name="name" value={name} onChange={this.handleInputChange}></input>
+                            </div>
+                            <div className="container-input">
+                                <input type="text" placeholder="Email" name="email" value={email} onChange={this.handleInputChange}></input>
+                            </div>
+                            <div className="container-input">
+                                <input type="text" placeholder="Ocupation"  name="ocupation"value={ocupation} onChange={this.handleInputChange}></input>
+                            </div>
+                            <div className="container-input">
+                                <input type="password" placeholder="Password"  name="password" value={password} onChange={this.handleInputChange}></input>
+                            </div>
+                            <div className="container-input">
+                                <input type="password" placeholder="Confirm password" name="confirmPassword" value={confirmPassword} onChange={this.handleInputChange}></input>
+                            </div>
+                            <div className="container-input-send">
+                                <input type="submit" value="SEND"></input>
+                            </div>
+                            <section className="section__inform">
+                                <p>Already have an account? <Link to= "/">click here</Link ></p>
+                            </section>
+                        </form> 
                     </div>
-                    <div className="container-input">
-                        <input type="text" placeholder="Email" name="email" value={email} onChange={this.handleInputChange}></input>
-                    </div>
-                    <div className="container-input">
-                        <input type="text" placeholder="Ocupation"  name="ocupation"value={ocupation} onChange={this.handleInputChange}></input>
-                    </div>
-                    <div className="container-input">
-                        <input type="password" placeholder="Password"  name="password" value={password} onChange={this.handleInputChange}></input>
-                    </div>
-                    <div className="container-input">
-                        <input type="password" placeholder="Confirm password" name="confirmPassword" value={confirmPassword} onChange={this.handleInputChange}></input>
-                    </div>
-                    <div className="container-input-send">
-                        <input type="submit" value="SEND"></input>
-                    </div>
-                    <section className="section__inform">
-                        <p>Already have an account? <Link to= "/">click here</Link ></p>
-                    </section>
-                </form> 
-            </div>
-    </section>
-    )
+            </motion.section>
+        )
     }
 }
 
